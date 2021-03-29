@@ -23,7 +23,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
         public void AddVeterinary ()
         {
-            
+            ;
         }
 
         public bool Equals (Service service)
