@@ -4,19 +4,24 @@ using System.Text;
 
 namespace Gestão_de_Clínica_Veterinária.Classes
 {
-    class Owner
+    class Schedule_Slot
     {
         public int Id { get; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public int Contact { get; set; }
-
-        public Owner(int id, string name, string address, int contact)
+        public Service Service { get; set; }
+        public Animal Animal { get; set; }
+        public Veterinary Veterinary { get; set; }
+        public string Dia { get; set; }
+        public string HoraInicio { get; set; }
+        public string HoraFim { get; set; }
+        
+        public Schedule_Slot(int id, Service service, Animal animal, Veterinary veterinary, string dia, string horaInicio, string horaFim)
         {
             this.Id = id;
-            this.Name = name;
-            this.Address = address;
-            this.Contact = contact;
+            this.Dia = dia;
+            this.Service = service;
+            this.Dia = dia;
+            this.HoraInicio = horaInicio;
+            this.HoraFim = horaFim;
         }
 
         public bool Equals(Owner owner)
@@ -28,6 +33,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
             return resultado;
         }
+
         public override string ToString()
         {
             string text = "";

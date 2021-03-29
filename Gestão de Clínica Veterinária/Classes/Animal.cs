@@ -22,6 +22,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.Subcategory = "---";
             this.Owner = owner;
         }
+
         public Animal(int id, string name, string gender, string category, string subcategory, Owner owner)
         {
             this.Id = id;
