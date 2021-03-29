@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Gestão_de_Clínica_Veterinária.Classes
-{    
+{
     class Service
     {
         private int Id { get; }
@@ -12,13 +12,18 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         private string[] Medicine { get; set; }
         private int Duration { get; set; }
 
-        public Service (int id, string name, float price, string[] medicine, int duration)
+        public Service(int id, string name, float price, string[] medicine, int duration)
         {
             this.Id = id;
             this.Name = name;
             this.Price = price;
             this.Medicine = medicine;
             this.Duration = duration;
+        }
+
+        public void AddVeterinary ()
+        {
+            ;
         }
 
         public bool Equals (Service service)

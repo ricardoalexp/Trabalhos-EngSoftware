@@ -4,11 +4,13 @@ namespace Gestão_de_Clínica_Veterinária
 {
     class Program
     {
+        static FileRegister register = new FileRegister();
         static void Main(string[] args)
         {
             bool leave = false;
             int option;
-          
+            FileRegister register = new FileRegister();
+
             do
             {
                 Console.WriteLine("Bem vindo ao software de Gestão da Clínica.");
@@ -17,14 +19,12 @@ namespace Gestão_de_Clínica_Veterinária
                 Console.WriteLine("2 - Serviços");
                 Console.WriteLine("0 - Sair");
 
-                Animal x;
-
                 option = int.Parse(Console.ReadLine());
 
                 switch(option) 
                 {
                     case 1:
-                        Console.WriteLine("Escolheu Opçao 1\n");
+                        ClientMenu();
                         break;
                     case 2:
                         Console.WriteLine("Escolheu Opçao 2\n");
@@ -62,13 +62,33 @@ namespace Gestão_de_Clínica_Veterinária
                 switch (option)
                 {
                     case 1:
-                        Console.WriteLine("asdadaw\n");
+
+                        Console.WriteLine("Novo Cliente\n");
+
+                        Console.WriteLine("Introduza o ID do Dono \n");
+                        int ownerId = int.Parse(Console.ReadLine());
+
+                        Console.WriteLine("Introduza o nome do Dono \n");
+                        string ownerName = Console.ReadLine();
+
+                        Console.WriteLine("Introduza a morada do Dono \n");
+                        string ownerAddress = Console.ReadLine();
+
+                        Console.WriteLine("Introduza o contacto do Dono \n");
+                        long ownerContact = long.Parse(Console.ReadLine());
+
+                        Owner owner = new Owner(ownerId, ownerName, ownerAddress, ownerContact);
+                        register.newOwner(owner);
+
                         break;
                     case 2:
                         Console.WriteLine("Escolheu Opçao 2\n");
                         break;
                     case 3:
                         Console.WriteLine("Escolheu Opçao 3\n");
+                        break;
+                    case 0:
+                        leave = true;
                         break;
                 }
 
@@ -89,8 +109,6 @@ namespace Gestão_de_Clínica_Veterinária
 
                 option = int.Parse(Console.ReadLine());
 
-                Animal x;
-
                 switch (option)
                 {
                     case 1:
@@ -101,6 +119,9 @@ namespace Gestão_de_Clínica_Veterinária
                         break;
                     case 3:
                         Console.WriteLine("Escolheu Opçao 3\n");
+                        break;
+                    case 0:
+                        leave = true;
                         break;
                 }
 
