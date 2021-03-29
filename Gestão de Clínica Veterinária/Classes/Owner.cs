@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace Gestão_de_Clínica_Veterinária.Classes
 {
@@ -36,6 +37,15 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             text += "Endereço: " + this.Address + "\n";
 
             return text;
+        }
+
+        public void WriteToFile(Owner owner)
+        {
+            string line = Convert.ToString(owner.Id) + "; " + owner.Name + "; " + owner.Address + "; " + owner.Contact + "; ";
+            string fileName =  + owner.Id + "_owner.txt";
+            File.WriteAllText(fileName, line);
+
+            Console.WriteLine("Foi adicionado ficheiro " + fileName + " na pasta " + Directory.GetCurrentDirectory());
         }
     }
 }

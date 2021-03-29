@@ -57,7 +57,7 @@ namespace Gestão_de_Clínica_Veterinária
 
                 option = int.Parse(Console.ReadLine());
 
-                Animal x;
+                //Animal x;
 
                 switch (option)
                 {
@@ -78,7 +78,8 @@ namespace Gestão_de_Clínica_Veterinária
                         long ownerContact = long.Parse(Console.ReadLine());
 
                         Owner owner = new Owner(ownerId, ownerName, ownerAddress, ownerContact);
-                        register.newOwner(owner);
+
+                        owner.WriteToFile(owner);
 
                         break;
                     case 2:
