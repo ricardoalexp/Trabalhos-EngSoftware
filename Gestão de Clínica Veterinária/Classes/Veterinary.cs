@@ -6,8 +6,8 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 {
     class Veterinary
     {
-        private int Id { get; }
-        private string Name { get; set; }
+        public int Id { get; }
+        public string Name { get; set; }
 
         public Veterinary (int id, string name)
         {
