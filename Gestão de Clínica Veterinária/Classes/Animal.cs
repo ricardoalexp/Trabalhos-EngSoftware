@@ -4,19 +4,16 @@ using System.Text;
 
 namespace Gestão_de_Clínica_Veterinária.Classes
 {
-    enum Gender {
-        Male,Female,Other
-    }
     class Animal
     {
-        private int Id { get; }
-        private string Name { get; set; }
-        private Gender Gender { get; set; }
-        private string Category { get; set; }
-        private string Subcategory { get; set; }
-        private Owner Owner { get; set; }
+        public int Id { get; }
+        public string Name { get; set; }
+        public string Gender { get; set; }
+        public string Category { get; set; }
+        public string Subcategory { get; set; }
+        public Owner Owner { get; set; }
 
-        public Animal(int id, string name, Gender gender, string category, Owner owner)
+        public Animal(int id, string name, string gender, string category, Owner owner)
         {
             this.Id = id;
             this.Name = name;
@@ -25,7 +22,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.Subcategory = "---";
             this.Owner = owner;
         }
-        public Animal(int id, string name, Gender gender, string category, string subcategory, Owner owner)
+        public Animal(int id, string name, string gender, string category, string subcategory, Owner owner)
         {
             this.Id = id;
             this.Name = name;
@@ -39,21 +36,22 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         {
             bool resultado;
 
-            if (animal == null){ resultado = false;}
-            else{ resultado = Id.Equals(animal.Id) ? true : false; }
+            if (animal == null) { resultado = false; }
+            else { resultado = Id.Equals(animal.Id) ? true : false; }
 
             return resultado;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
-            string text;
-
-            text = "";
+            string text = "";
+            text += "Dono: " + this.Owner.Name + "\n";
+            text += "Id: " + this.Id + "\n";
+            text += "Nome: " + this.Name + "\n";
+            text += "Género: " + this.Gender + "\n";
+            text += "Espécie: " + this.Category + "\n";
+            text += "Subespécie: " + this.Subcategory + "\n";
             return text;
         }
     }
-    //bla
-    //bla
-    //bla
 }
