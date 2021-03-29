@@ -8,17 +8,11 @@ namespace Gestão_de_Clínica_Veterinária.Classes
     {
         private int Id { get; }
         private string Name { get; set; }
-        public string Dia { get; set; }
-        public string HoraInicio { get; set; }
-        public string HoraFim { get; set; }
 
-        public Veterinary (int id, string name, string dia, string horaInicio, string horaFim)
+        public Veterinary (int id, string name)
         {
             this.Id = id;
             this.Name = name;
-            this.Dia = dia;
-            this.HoraInicio = horaInicio;
-            this.HoraFim = horaFim;
         }
 
         public bool Equals (Veterinary veterinary)
@@ -33,9 +27,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
         public override String ToString()
         {
-            string text;
-
-            text = "Id: " + this.Id + "\n" + "Nome: " + this.Name;
+            string text = "Id: " + this.Id + "\n" + "Nome: " + this.Name;
 
             return text;
         }

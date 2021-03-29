@@ -22,7 +22,6 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.Subcategory = "---";
             this.Owner = owner;
         }
-
         public Animal(int id, string name, string gender, string category, string subcategory, Owner owner)
         {
             this.Id = id;
@@ -45,8 +44,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
         public override string ToString()
         {
-            string text = "";
-            text += "Dono: " + this.Owner.Name + "\n";
+            string text = "Dono: " + this.Owner.Name + "\n";
             text += "Id: " + this.Id + "\n";
             text += "Nome: " + this.Name + "\n";
             text += "Género: " + this.Gender + "\n";
