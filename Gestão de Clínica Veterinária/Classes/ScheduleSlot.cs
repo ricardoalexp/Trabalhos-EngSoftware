@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Gestão_de_Clínica_Veterinária.Classes
 {
-    class Schedule_Slot
+    class ScheduleSlot
     {
         public int Id { get; }
         public Service Service { get; set; }
@@ -14,7 +14,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         public string HoraInicio { get; set; }
         public string HoraFim { get; set; }
         
-        public Schedule_Slot(int id, Service service, Animal animal, Veterinary veterinary, string dia, string horaInicio, string horaFim)
+        public ScheduleSlot(int id, Service service, Animal animal, Veterinary veterinary, string dia, string horaInicio, string horaFim)
         {
             this.Id = id;
             this.Dia = dia;
@@ -24,12 +24,12 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.HoraFim = horaFim;
         }
 
-        public bool Equals(Owner owner)
+        public bool Equals(ScheduleSlot scheduleSlot)
         {
             bool resultado;
 
-            if (owner == null) { resultado = false; }
-            else { resultado = Id.Equals(owner.Id) ? true : false; }
+            if (scheduleSlot == null) { resultado = false; }
+            else { resultado = Id.Equals(scheduleSlot.Id) ? true : false; }
 
             return resultado;
         }
@@ -39,9 +39,12 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             string text = "";
 
             text += "Id: " + this.Id + "\n";
-            text += "Nome: " + this.Name + "\n";
-            text += "Contacto: " + this.Contact + "\n";
-            text += "Endereço: " + this.Address + "\n";
+            text += "Serviço: " + this.Service + "\n";
+            text += "Animal: " + this.Animal + "\n";
+            text += "Veterinário: " + this.Veterinary + "\n";
+            text += "Dia: " + this.Dia + "\n";
+            text += "Hora de início: " + this.HoraInicio + "\n";
+            text += "Hora de fim: " + this.HoraFim + "\n";
 
             return text;
         }
