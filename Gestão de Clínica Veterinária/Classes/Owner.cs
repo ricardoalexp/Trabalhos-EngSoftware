@@ -30,9 +30,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         }
         public override string ToString()
         {
-            string text = "";
-
-            text += "Id: " + this.Id + "\n";
+            string text = "Id: " + this.Id + "\n";
             text += "Nome: " + this.Name + "\n";
             text += "Contacto: " + this.Contact + "\n";
             text += "Endereço: " + this.Address + "\n";
