@@ -9,7 +9,7 @@ namespace Gestão_de_Clínica_Veterinária
         {
             bool leave = false;
             int option;
-            //Hello world
+
             do
             {
                 Console.WriteLine("Bem vindo ao software de Gestão da Clínica.");

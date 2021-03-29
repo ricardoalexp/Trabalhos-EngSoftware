@@ -12,7 +12,12 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         private string[] Medicine { get; set; }
         private int Duration { get; set; }
 
+<<<<<<< HEAD
         public Service(int id, string name, float price, string[] medicine, int duration)
+=======
+
+        public Service (int id, string name, float price, string[] medicine, int duration)
+>>>>>>> master
         {
             this.Id = id;
             this.Name = name;
