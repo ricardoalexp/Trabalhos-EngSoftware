@@ -6,11 +6,11 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 {
     class Service
     {
-        private int Id { get; }
-        private string Name { get; set; }
-        private float Price { get; set; }
-        private string[] Medicine { get; set; }
-        private int Duration { get; set; }
+        public int Id { get; }
+        public string Name { get; set; }
+        public float Price { get; set; }
+        public string[] Medicine { get; set; }
+        public int Duration { get; set; }
 
         public Service(int id, string name, float price, string[] medicine, int duration)
         {
@@ -20,12 +20,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.Medicine = medicine;
             this.Duration = duration;
         }
-
-        public void AddVeterinary ()
-        {
-            ;
-        }
-
+               
         public bool Equals (Service service)
         {
             bool result;
