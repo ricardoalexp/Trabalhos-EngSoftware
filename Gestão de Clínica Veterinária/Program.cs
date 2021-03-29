@@ -65,9 +65,6 @@ namespace Gestão_de_Clínica_Veterinária
 
                         Console.WriteLine("Novo Cliente\n");
 
-                        Console.WriteLine("Introduza o ID do Dono \n");
-                        int ownerId = int.Parse(Console.ReadLine());
-
                         Console.WriteLine("Introduza o nome do Dono \n");
                         string ownerName = Console.ReadLine();
 
@@ -77,9 +74,10 @@ namespace Gestão_de_Clínica_Veterinária
                         Console.WriteLine("Introduza o contacto do Dono \n");
                         long ownerContact = long.Parse(Console.ReadLine());
 
-                        Owner owner = new Owner(ownerId, ownerName, ownerAddress, ownerContact);
+                        Owner owner = new Owner(ownerName, ownerAddress, ownerContact);
 
-                        owner.WriteToFile(owner);
+                        register.WriteToFile(owner);
+
 
                         break;
                     case 2:
