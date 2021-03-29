@@ -9,9 +9,9 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         public int Id { get; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public int Contact { get; set; }
+        public long Contact { get; set; }
 
-        public Owner(int id, string name, string address, int contact)
+        public Owner(int id, string name, string address, long contact)
         {
             this.Id = id;
             this.Name = name;
