@@ -4,12 +4,11 @@ namespace Gestão_de_Clínica_Veterinária
 {
     class Program
     {
-        static FileRegister register = new FileRegister();
+        static FileWriter register = new FileWriter();
         static void Main(string[] args)
         {
             bool leave = false;
             int option;
-            FileRegister register = new FileRegister();
 
             do
             {
@@ -49,41 +48,55 @@ namespace Gestão_de_Clínica_Veterinária
             {
                 Console.WriteLine("Área de cliente:\n");
                 Console.WriteLine("1 - Registar Cliente");
-                Console.WriteLine("2 - Listar Clientes");
-                Console.WriteLine("3 - Registar Animal");
+                Console.WriteLine("2 - Registar Animal");
+                Console.WriteLine("3 - Listar Clientes");
                 Console.WriteLine("4 - Listar Animais");
                 Console.WriteLine("5 - Relatório de Cliente");
+                Console.WriteLine("6 - Relatório de Animal");
                 Console.WriteLine("0 - Sair");
 
                 option = int.Parse(Console.ReadLine());
-
-                //Animal x;
 
                 switch (option)
                 {
                     case 1:
 
-                        Console.WriteLine("Novo Cliente\n");
+                        Console.WriteLine("Novo Cliente: \n");
+                        Console.WriteLine("Introduza o nome do cliente: \n");
+                        string ownerName = Console.ReadLine();
+
+                        Console.WriteLine("Introduza a morada do cliente: \n");
+                        string ownerAddress = Console.ReadLine();
+
+                        Console.WriteLine("Introduza o contacto do cliente: \n");
+                        long ownerContact = long.Parse(Console.ReadLine());
+
+                        Owner owner = new Owner(ownerName, ownerAddress, ownerContact);
+
+                        register.WriteToFile(owner);
+
+                        break;
+                    case 2:
+                        Console.WriteLine("Introduza um Animal \n");
+
+                        Console.WriteLine("Introduza o ID \n");
+                        int idAnimal = int.Parse(Console.ReadLine());
+
+                        Console.WriteLine("Introduza o Nome \n");
+                        string nameAnimal = Console.ReadLine();
+
+                        Console.WriteLine("Introduza o Género \n");
+                        string genderAnimal = Console.ReadLine();
+
+                        Console.WriteLine("Introduza a Categoria \n");
+                        string categoryAnimal = Console.ReadLine();
+
+                        Console.WriteLine("Introduza a subcategoria \n");
+                        string subcategoryAnimal = Console.ReadLine();
 
                         Console.WriteLine("Introduza o ID do Dono \n");
                         int ownerId = int.Parse(Console.ReadLine());
 
-                        Console.WriteLine("Introduza o nome do Dono \n");
-                        string ownerName = Console.ReadLine();
-
-                        Console.WriteLine("Introduza a morada do Dono \n");
-                        string ownerAddress = Console.ReadLine();
-
-                        Console.WriteLine("Introduza o contacto do Dono \n");
-                        long ownerContact = long.Parse(Console.ReadLine());
-
-                        Owner owner = new Owner(ownerId, ownerName, ownerAddress, ownerContact);
-
-                        owner.WriteToFile(owner);
-
-                        break;
-                    case 2:
-                        Console.WriteLine("Escolheu Opçao 2\n");
                         break;
                     case 3:
                         Console.WriteLine("Escolheu Opçao 3\n");
