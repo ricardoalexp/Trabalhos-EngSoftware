@@ -19,7 +19,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.Medicine = medicine;
             this.Duration = duration;
         }
-
+        
         public Service(int id, string name, float price, List<string> medicine, int duration)
         {
             this.Id = id;
