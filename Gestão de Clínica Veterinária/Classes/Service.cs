@@ -6,15 +6,14 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 {
     class Service
     {
-        public int Id { get; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public float Price { get; set; }
-        public string[] Medicine { get; set; }
+        public List<string> Medicine { get; set; }
         public int Duration { get; set; }
 
-        public Service(int id, string name, float price, string[] medicine, int duration)
+        public Service(string name, float price, List<string> medicine, int duration)
         {
-            this.Id = id;
             this.Name = name;
             this.Price = price;
             this.Medicine = medicine;
@@ -35,7 +34,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         {
             string text = "Serviço: " + this.Name + "\n" + "Preço: " + this.Price + "\n" + "Duração: " + this.Duration + "\n" + "Medicamentos: \n";
 
-            int medicineLength = this.Medicine.Length;
+            int medicineLength = this.Medicine.Count;
 
             for (int i = 0; i < medicineLength; i++)
             {

@@ -67,7 +67,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     + animal.Gender + ";"
                     + animal.Category + ";"
                     + animal.Subcategory + ";"
-                    + animal.Owner.Id + ";\n";
+                    + animal.OwnerId + ";\n";
 
 
                 File.WriteAllText(fileName, line);
