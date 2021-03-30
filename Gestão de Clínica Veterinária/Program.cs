@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Gestão_de_Clínica_Veterinária.Classes;
 namespace Gestão_de_Clínica_Veterinária
 {
@@ -16,6 +17,7 @@ namespace Gestão_de_Clínica_Veterinária
                 Console.WriteLine("Escolha uma das opções:\n");
                 Console.WriteLine("1 - Área de Cliente");
                 Console.WriteLine("2 - Serviços");
+                Console.WriteLine("3 - Área de Administrador");
                 Console.WriteLine("0 - Sair");
 
                 option = int.Parse(Console.ReadLine());
@@ -26,10 +28,10 @@ namespace Gestão_de_Clínica_Veterinária
                         ClientMenu();
                         break;
                     case 2:
-                        Console.WriteLine("Escolheu Opçao 2\n");
+                        ServiceMenu();
                         break;
                     case 3:
-                        Console.WriteLine("Escolheu Opçao 3\n");
+                        AdminMenu();
                         break;
                     case 0:
                         leave = true;
@@ -77,7 +79,7 @@ namespace Gestão_de_Clínica_Veterinária
 
                         break;
                     case 2:
-                        Console.WriteLine("Introduza um Animal \n");
+                        Console.WriteLine("Introduza um Animal:\n");
 
                         Console.WriteLine("Introduza o ID \n");
                         int idAnimal = int.Parse(Console.ReadLine());
@@ -126,7 +128,64 @@ namespace Gestão_de_Clínica_Veterinária
                 switch (option)
                 {
                     case 1:
-                        Console.WriteLine("asdadaw\n");
+                        
+                        break;
+                    case 2:
+                        Console.WriteLine("Escolheu Opçao 2\n");
+                        break;
+                    case 3:
+                        Console.WriteLine("Escolheu Opçao 3\n");
+                        break;
+                    case 0:
+                        leave = true;
+                        break;
+                }
+
+            } while (!leave);
+        }
+
+        static void AdminMenu()
+        {
+            bool leave = false;
+            int option;
+            do
+            {
+                Console.WriteLine("Área de Administrador:\n");
+                Console.WriteLine("1 - Registar novo serviço");
+                Console.WriteLine("2 - Registar novo veterinário");
+                Console.WriteLine("0 - Sair");
+
+                option = int.Parse(Console.ReadLine());
+
+                switch (option)
+                {
+                    case 1:
+                        
+                        Console.WriteLine("Novo Serviço:\n");
+                        Console.WriteLine("Introduza o Nome do Serviço:\n");
+                        string serviceName = Console.ReadLine();
+
+                        Console.WriteLine("Introduza o Preço (utilizar ponto) do Serviço: \n");
+                        float servicePrice = float.Parse(Console.ReadLine());
+
+                        Console.WriteLine("Introduza a Duração do Serviço: \n");
+                        Console.WriteLine("(formato hhmm)\n");
+                        int serviceDuration = int.Parse(Console.ReadLine());
+
+                        List<string> serviceMedicines = new List<string>();
+                        Console.WriteLine("Introduza os medicamentos um a um:\n");
+                        Console.WriteLine("(após inserir todos, escreva DONE para terminar):\n");
+                        string input;
+                        do
+                        {
+                            input = Console.ReadLine();
+                            serviceMedicines.Add(input);
+
+                        } while ( !input.Equals("DONE") );
+
+                        Service newService = new Service(serviceName,servicePrice,serviceMedicines,serviceDuration);
+                        newService.Id = register.WriteToFile(newService);
+                        
                         break;
                     case 2:
                         Console.WriteLine("Escolheu Opçao 2\n");
