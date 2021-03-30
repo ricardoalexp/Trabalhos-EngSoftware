@@ -71,7 +71,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
         public List<Service> ReadService()
         {
-            string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Service");
+            string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Services");
             List<Service> serviceList = new List<Service>();
             List<string> medicines;
 
@@ -82,7 +82,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     string text = File.ReadAllText(dir);
                     string[] atributes = text.Split(';');
 
-                    string[] meds = atributes[2].Split(':');
+                    string[] meds = atributes[3].Split(':');
                     medicines = new List<string>();
                                         
                         foreach (string med in meds)

@@ -25,7 +25,7 @@ namespace Gestão_de_Clínica_Veterinária
             Owners = regReader.ReadOwner();
             Animals = regReader.ReadAnimal();
             Veterinaries = regReader.ReadVeterinary();
-            Services = new List<Service>();
+            Services = regReader.ReadService();
             DaySchedule = new List<ScheduleSlot>();
 
             do
