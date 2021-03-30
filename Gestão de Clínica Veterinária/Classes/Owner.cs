@@ -7,7 +7,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 {
     class Owner
     {
-        public int Id { get; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public long Contact { get; set; }
@@ -15,6 +15,12 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         public Owner(int id, string name, string address, long contact)
         {
             this.Id = id;
+            this.Name = name;
+            this.Address = address;
+            this.Contact = contact;
+        }
+        public Owner(string name, string address, long contact)
+        {
             this.Name = name;
             this.Address = address;
             this.Contact = contact;
@@ -39,13 +45,5 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return text;
         }
 
-        public void WriteToFile(Owner owner)
-        {
-            string line = Convert.ToString(owner.Id) + "; " + owner.Name + "; " + owner.Address + "; " + owner.Contact + "; ";
-            string fileName =  + owner.Id + "_owner.txt";
-            File.WriteAllText(fileName, line);
-
-            Console.WriteLine("Foi adicionado ficheiro " + fileName + " na pasta " + Directory.GetCurrentDirectory());
-        }
     }
 }
