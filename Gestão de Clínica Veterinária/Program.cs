@@ -6,11 +6,15 @@ namespace Gestão_de_Clínica_Veterinária
     class Program
     {
         static FileWriter register = new FileWriter();
+
         static List<Owner> Owners;
         static List<Animal> Animals;
         static List<Veterinary> Veterinaries;
         static List<Service> Services;
         static List<ScheduleSlot> DaySchedule;
+
+
+        static FileReader test = new FileReader();
 
         static void Main(string[] args)
         {
@@ -31,6 +35,7 @@ namespace Gestão_de_Clínica_Veterinária
                 Console.WriteLine("2 - Serviços");
                 Console.WriteLine("3 - Área de Administrador");
                 Console.WriteLine("0 - Sair");
+                test.ReadVeterinary();
 
                 option = int.Parse(Console.ReadLine());
 
