@@ -6,10 +6,22 @@ namespace Gestão_de_Clínica_Veterinária
     class Program
     {
         static FileWriter register = new FileWriter();
+        static List<Owner> Owners;
+        static List<Animal> Animals;
+        static List<Veterinary> Veterinaries;
+        static List<Service> Services;
+        static List<ScheduleSlot> DaySchedule;
+
         static void Main(string[] args)
         {
             bool leave = false;
             int option;
+
+            Owners = new List<Owner>();
+            Animals = new List<Animal>();
+            Veterinaries = new List<Veterinary>();
+            Services = new List<Service>();
+            DaySchedule = new List<ScheduleSlot>();
 
             do
             {
@@ -80,24 +92,25 @@ namespace Gestão_de_Clínica_Veterinária
                         break;
                     case 2:
                         Console.WriteLine("Introduza um Animal:\n");
-
-                        Console.WriteLine("Introduza o ID \n");
-                        int idAnimal = int.Parse(Console.ReadLine());
-
                         Console.WriteLine("Introduza o Nome \n");
-                        string nameAnimal = Console.ReadLine();
+                        string animalName = Console.ReadLine();
 
                         Console.WriteLine("Introduza o Género \n");
-                        string genderAnimal = Console.ReadLine();
+                        string animalGender = Console.ReadLine();
 
                         Console.WriteLine("Introduza a Categoria \n");
-                        string categoryAnimal = Console.ReadLine();
+                        string animalCategory = Console.ReadLine();
 
                         Console.WriteLine("Introduza a subcategoria \n");
-                        string subcategoryAnimal = Console.ReadLine();
+                        string animalSubcategory = Console.ReadLine();
 
                         Console.WriteLine("Introduza o ID do Dono \n");
                         int ownerId = int.Parse(Console.ReadLine());
+
+                        Animal animal = new Animal(animalName, animalGender, animalCategory, animalSubcategory, ownerId);
+                        animal.Id = register.WriteToFile(animal);
+
+                        Console.WriteLine("Adicionou:\n" + animal.ToString());
 
                         break;
                     case 3:

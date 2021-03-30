@@ -6,30 +6,29 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 {
     class Animal
     {
-        public int Id { get; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }
         public string Category { get; set; }
         public string Subcategory { get; set; }
-        public Owner Owner { get; set; }
+        public int OwnerId { get; set; }
 
-        public Animal(int id, string name, string gender, string category, Owner owner)
-        {
-            this.Id = id;
-            this.Name = name;
-            this.Gender = gender;
-            this.Category = category;
-            this.Subcategory = "---";
-            this.Owner = owner;
-        }
-        public Animal(int id, string name, string gender, string category, string subcategory, Owner owner)
+        public Animal(int id, string name, string gender, string category, string subcategory, int ownerId)
         {
             this.Id = id;
             this.Name = name;
             this.Gender = gender;
             this.Category = category;
             this.Subcategory = subcategory;
-            this.Owner = owner;
+            this.OwnerId = ownerId;
+        }
+        public Animal(string name, string gender, string category, string subcategory, int ownerId)
+        {
+            this.Name = name;
+            this.Gender = gender;
+            this.Category = category;
+            this.Subcategory = subcategory;
+            this.OwnerId = ownerId;
         }
 
         public bool Equals(Animal animal)
@@ -44,12 +43,15 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
         public override string ToString()
         {
-            string text = "Dono: " + this.Owner.Name + "\n";
+            string text = "Dono: " + this.OwnerId + "\n";
             text += "Id: " + this.Id + "\n";
             text += "Nome: " + this.Name + "\n";
             text += "Género: " + this.Gender + "\n";
             text += "Espécie: " + this.Category + "\n";
-            text += "Subespécie: " + this.Subcategory + "\n";
+            if (!this.Subcategory.Equals("---"))
+            {
+                text += "Subespécie: " + this.Subcategory + "\n";
+            }
             return text;
         }
     }
