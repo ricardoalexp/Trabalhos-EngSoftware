@@ -69,6 +69,36 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return animalList;
         }
 
+        public List<Service> ReadService()
+        {
+            string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Service");
+            List<Service> serviceList = new List<Service>();
+            List<string> medicines;
+
+            foreach (string dir in dirs)
+            {
+                if (Path.GetFileName(dir) != "não apagar.txt")
+                {
+                    string text = File.ReadAllText(dir);
+                    string[] atributes = text.Split(';');
+
+                    string[] meds = atributes[2].Split(':');
+                    medicines = new List<string>();
+                                        
+                        foreach (string med in meds)
+                        {
+                            medicines.Add(med);
+                        }
+                    
+                    Service service = new Service(int.Parse(atributes[0]), atributes[1], float.Parse(atributes[2]), medicines, int.Parse(atributes[4]));
+                    Console.WriteLine(service.ToString());
+
+                    serviceList.Add(service);
+                }
+            }
+            return serviceList;
+        }
+
         //public List<ScheaduleSlot> ReadScheaduleSlot() //Falta fazer
 
     }
