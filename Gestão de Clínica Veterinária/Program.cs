@@ -5,6 +5,7 @@ namespace Gestão_de_Clínica_Veterinária
     class Program
     {
         static FileWriter register = new FileWriter();
+        static FileReader test = new FileReader();
         static void Main(string[] args)
         {
             bool leave = false;
@@ -17,6 +18,7 @@ namespace Gestão_de_Clínica_Veterinária
                 Console.WriteLine("1 - Área de Cliente");
                 Console.WriteLine("2 - Serviços");
                 Console.WriteLine("0 - Sair");
+                test.ReadVeterinary();
 
                 option = int.Parse(Console.ReadLine());
 
