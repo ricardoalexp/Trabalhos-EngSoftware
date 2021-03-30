@@ -5,7 +5,8 @@ namespace Gestão_de_Clínica_Veterinária
 {
     class Program
     {
-        static FileWriter register = new FileWriter();
+        static FileWriter regWriter = new FileWriter();
+        static FileReader regReader = new FileReader();
 
         static List<Owner> Owners;
         static List<Animal> Animals;
@@ -21,14 +22,15 @@ namespace Gestão_de_Clínica_Veterinária
             bool leave = false;
             int option;
 
-            Owners = new List<Owner>();
-            Animals = new List<Animal>();
-            Veterinaries = new List<Veterinary>();
+            Owners = regReader.ReadOwner();
+            Animals = regReader.ReadAnimal();
+            Veterinaries = regReader.ReadVeterinary();
             Services = new List<Service>();
             DaySchedule = new List<ScheduleSlot>();
 
             do
             {
+
                 Console.WriteLine("Bem vindo ao software de Gestão da Clínica.");
                 Console.WriteLine("Escolha uma das opções:\n");
                 Console.WriteLine("1 - Área de Cliente");
@@ -92,9 +94,10 @@ namespace Gestão_de_Clínica_Veterinária
 
                         Owner owner = new Owner(ownerName, ownerAddress, ownerContact);
 
-                        register.WriteToFile(owner);
+                        regWriter.WriteToFile(owner);
 
                         break;
+
                     case 2:
                         Console.WriteLine("Introduza um Animal:\n");
                         Console.WriteLine("Introduza o Nome \n");
@@ -113,14 +116,15 @@ namespace Gestão_de_Clínica_Veterinária
                         int ownerId = int.Parse(Console.ReadLine());
 
                         Animal animal = new Animal(animalName, animalGender, animalCategory, animalSubcategory, ownerId);
-                        animal.Id = register.WriteToFile(animal);
+                        animal.Id = regWriter.WriteToFile(animal);
 
                         Console.WriteLine("Adicionou:\n" + animal.ToString());
-
                         break;
+
                     case 3:
                         Console.WriteLine("Escolheu Opçao 3\n");
                         break;
+                
                     case 0:
                         leave = true;
                         break;
@@ -202,7 +206,7 @@ namespace Gestão_de_Clínica_Veterinária
                         } while ( !input.Equals("DONE") );
 
                         Service newService = new Service(serviceName,servicePrice,serviceMedicines,serviceDuration);
-                        newService.Id = register.WriteToFile(newService);
+                        newService.Id = regWriter.WriteToFile(newService);
                         
                         break;
                     case 2:

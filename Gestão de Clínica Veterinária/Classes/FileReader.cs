@@ -48,7 +48,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return ownerList;
         }
 
-        public List<Owner> ReadAnimal()
+        public List<Animal> ReadAnimal()
         {
             string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Animals");
             List<Animal> animalList = new List<Animal>();
