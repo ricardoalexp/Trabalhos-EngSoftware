@@ -1,1 +1,1 @@
-12;Vacina;15.6;blablaina:cortizona:agua;30;
+12;Vacina;15,6;blablaina:cortizona:agua;30;

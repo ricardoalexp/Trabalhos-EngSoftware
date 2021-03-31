@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 using Gestão_de_Clínica_Veterinária.Classes;
 namespace Gestão_de_Clínica_Veterinária
 {
@@ -18,6 +20,12 @@ namespace Gestão_de_Clínica_Veterinária
 
         static void Main(string[] args)
         {
+            CultureInfo culture = (CultureInfo)CultureInfo.CurrentUICulture.Clone();
+            culture.NumberFormat.NumberDecimalSeparator = ",";
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+
+
             Owners = regReader.ReadOwner();
             Animals = regReader.ReadAnimal();
             Veterinaries = regReader.ReadVeterinary();
@@ -74,7 +82,7 @@ namespace Gestão_de_Clínica_Veterinária
                 Console.WriteLine("1 - Registar Cliente");
                 Console.WriteLine("2 - Registar Animal");
                 Console.WriteLine("3 - Listar Clientes");
-                Console.WriteLine("4 - Listar Animais");
+                Console.WriteLine("4 - Listar Animais de um Cliente");
                 Console.WriteLine("5 - Relatório de Cliente");
                 Console.WriteLine("6 - Relatório de Animal");
                 Console.WriteLine("0 - Sair");
@@ -191,8 +199,8 @@ namespace Gestão_de_Clínica_Veterinária
                         Console.WriteLine("Introduza o Nome do Serviço:\n");
                         string serviceName = Console.ReadLine();
 
-                        Console.WriteLine("Introduza o Preço (utilizar ponto) do Serviço: \n");
-                        float servicePrice = float.Parse(Console.ReadLine());
+                        Console.WriteLine("Introduza o Preço do Serviço: \n");
+                        float servicePrice = float.Parse(Console.ReadLine().Replace('.', ','));
 
                         Console.WriteLine("Introduza a Duração do Serviço: \n");
                         Console.WriteLine("(formato hhmm)\n");
