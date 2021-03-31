@@ -99,6 +99,28 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return serviceList;
         }
 
+
+        public List<ScheduleSlot> ReadScheduleSlot(string date)
+        {
+            string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Registry");
+            List<Animal> animalList = new List<Animal>();
+
+            foreach (string dir in dirs)
+            {
+                if (Path.GetFileName(dir) != "não apagar.txt")
+                {
+                    string text = File.ReadAllText(dir);
+                    string[] atributes = text.Split(';');
+
+                    Animal animal = new Animal(int.Parse(atributes[0]), atributes[1], atributes[2], atributes[3], atributes[4], int.Parse(atributes[5]));
+                    Console.WriteLine(animal.ToString());
+
+                    animalList.Add(animal);
+                }
+            }
+            return animalList;
+        }
+
         //public List<ScheduleSlot> ReadScheaduleSlot() //Falta fazer
 
         //Temos que decidir como vamos organizar os ScheduleSlots.

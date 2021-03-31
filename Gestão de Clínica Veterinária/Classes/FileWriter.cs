@@ -97,6 +97,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     i++;
                     fileName = relativePath + i + "_veterinary.txt";
                 }
+
                 id = i;
                 string line = Convert.ToString(id) + ";"
                + veterinary.Name + ";\n";
@@ -117,7 +118,6 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         {            
             int id;
             string relativePath = filePath + @"Resources\Services\";
-
             string fileName;
             int i = 1;
             try

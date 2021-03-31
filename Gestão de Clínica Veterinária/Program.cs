@@ -18,19 +18,22 @@ namespace Gestão_de_Clínica_Veterinária
 
         static void Main(string[] args)
         {
+            Owners = regReader.ReadOwner();
+            Animals = regReader.ReadAnimal();
+            Veterinaries = regReader.ReadVeterinary();
+            Services = regReader.ReadService();
+            DaySchedule = new List<ScheduleSlot>();
+
             MainMenu();
+            test.ReadAnimal();
+
+            
         }
 
         static void MainMenu()
         {
             bool leave = false;
             int option;
-
-            Owners = regReader.ReadOwner();
-            Animals = regReader.ReadAnimal();
-            Veterinaries = regReader.ReadVeterinary();
-            Services = regReader.ReadService();
-            DaySchedule = new List<ScheduleSlot>();
 
             do
             {
@@ -40,7 +43,6 @@ namespace Gestão_de_Clínica_Veterinária
                 Console.WriteLine("2 - Serviços");
                 Console.WriteLine("3 - Área de Administrador");
                 Console.WriteLine("0 - Sair");
-                test.ReadVeterinary();
 
                 option = int.Parse(Console.ReadLine());
 
@@ -83,7 +85,6 @@ namespace Gestão_de_Clínica_Veterinária
                 switch (option)
                 {
                     case 1:
-
                         Console.WriteLine("Novo Cliente: \n");
                         Console.WriteLine("Introduza o nome do cliente: \n");
                         string ownerName = Console.ReadLine();

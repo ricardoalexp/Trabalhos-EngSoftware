@@ -25,33 +25,14 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.HoraFim = horaFim;
         }
 
-        public ScheduleSlot(int id, int veterinaryId, string dia, string horaInicio, string horaFim)
+        public ScheduleSlot(int serviceId, int animalId, int veterinaryId, string dia, string horaInicio, string horaFim)
         {
-            this.Id = id;
-            this.ServiceId = 0;
-            this.AnimalId = 0;
+            this.ServiceId = serviceId;
+            this.AnimalId = animalId;
             this.VeterinaryId = veterinaryId;
             this.Dia = dia;
             this.HoraInicio = horaInicio;
             this.HoraFim = horaFim;
-        }
-
-        public void AddAnimalId(ScheduleSlot scheduleSlot) //Marcos: Alterei este método. Está certo?? 
-        {
-            if (scheduleSlot.AnimalId == 0)
-            {
-                Console.WriteLine("Adicione o Id do animal: \n");
-                scheduleSlot.AnimalId = int.Parse(Console.ReadLine());
-            }
-        }
-
-        public void AddServiceId(ScheduleSlot scheduleSlot) //Marcos: Alterei este método. Está certo?? 
-        {
-            if (scheduleSlot.ServiceId == 0)
-            {
-                Console.WriteLine("Adicione o Id do Serviço: \n");
-                scheduleSlot.ServiceId = int.Parse(Console.ReadLine());
-            }
         }
 
         public bool Equals(ScheduleSlot scheduleSlot)
