@@ -25,9 +25,8 @@ namespace Gestão_de_Clínica_Veterinária
             DaySchedule = new List<ScheduleSlot>();
 
             MainMenu();
-            test.ReadAnimal();
+            //test.ReadScheduleSlot("20210331");
 
-            
         }
 
         static void MainMenu()
