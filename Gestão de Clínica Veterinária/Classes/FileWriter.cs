@@ -68,8 +68,10 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     + animal.Subcategory + ";"
                     + animal.OwnerId + ";\n";
 
-
-                File.WriteAllText(fileName, line);
+                using (StreamWriter sw = File.AppendText(fileName))
+                {
+                    sw.WriteLine(line);
+                }
                 Console.WriteLine(line);
 
             }

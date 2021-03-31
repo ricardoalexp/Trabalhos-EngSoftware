@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 using Gestão_de_Clínica_Veterinária.Classes;
 namespace Gestão_de_Clínica_Veterinária
 {
@@ -18,6 +20,11 @@ namespace Gestão_de_Clínica_Veterinária
 
         static void Main(string[] args)
         {
+            CultureInfo culture = (CultureInfo)CultureInfo.CurrentUICulture.Clone();
+            culture.NumberFormat.NumberDecimalSeparator = ",";
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+
             Owners = regReader.ReadOwner();
             Animals = regReader.ReadAnimal();
             Veterinaries = regReader.ReadVeterinary();
@@ -75,7 +82,7 @@ namespace Gestão_de_Clínica_Veterinária
                 Console.WriteLine("1 - Registar Cliente");
                 Console.WriteLine("2 - Registar Animal");
                 Console.WriteLine("3 - Listar Clientes");
-                Console.WriteLine("4 - Listar Animais");
+                Console.WriteLine("4 - Listar Animais de um Cliente");
                 Console.WriteLine("5 - Relatório de Cliente");
                 Console.WriteLine("6 - Relatório de Animal");
                 Console.WriteLine("0 - Sair");
@@ -85,14 +92,14 @@ namespace Gestão_de_Clínica_Veterinária
                 switch (option)
                 {
                     case 1:
-                        Console.WriteLine("Novo Cliente: \n");
-                        Console.WriteLine("Introduza o nome do cliente: \n");
+                        Console.WriteLine("\nNovo Cliente: ");
+                        Console.WriteLine("\nIntroduza o nome do cliente: ");
                         string ownerName = Console.ReadLine();
 
-                        Console.WriteLine("Introduza a morada do cliente: \n");
+                        Console.WriteLine("\nIntroduza a morada do cliente: ");
                         string ownerAddress = Console.ReadLine();
 
-                        Console.WriteLine("Introduza o contacto do cliente: \n");
+                        Console.WriteLine("\nIntroduza o contacto do cliente: ");
                         long ownerContact = long.Parse(Console.ReadLine());
 
                         Owner owner = new Owner(ownerName, ownerAddress, ownerContact);
@@ -102,20 +109,20 @@ namespace Gestão_de_Clínica_Veterinária
                         break;
 
                     case 2:
-                        Console.WriteLine("Introduza um Animal:\n");
-                        Console.WriteLine("Introduza o Nome \n");
+                        Console.WriteLine("\nIntroduza um Animal:");
+                        Console.WriteLine("\nIntroduza o Nome:");
                         string animalName = Console.ReadLine();
 
-                        Console.WriteLine("Introduza o Género \n");
+                        Console.WriteLine("\nIntroduza o Género:");
                         string animalGender = Console.ReadLine();
 
-                        Console.WriteLine("Introduza a Categoria \n");
+                        Console.WriteLine("\nIntroduza a Categoria:");
                         string animalCategory = Console.ReadLine();
 
-                        Console.WriteLine("Introduza a subcategoria \n");
+                        Console.WriteLine("\nIntroduza a subcategoria:");
                         string animalSubcategory = Console.ReadLine();
 
-                        Console.WriteLine("Introduza o ID do Dono \n");
+                        Console.WriteLine("\nIntroduza o ID do Dono:");
                         int ownerId = int.Parse(Console.ReadLine());
 
                         Animal animal = new Animal(animalName, animalGender, animalCategory, animalSubcategory, ownerId);
@@ -125,9 +132,15 @@ namespace Gestão_de_Clínica_Veterinária
                         break;
 
                     case 3:
-                        Console.WriteLine("Escolheu Opçao 3\n");
+                        Console.WriteLine("Clientes Registados no Sistema:\n");
+                        foreach(Owner person in Owners)
+                        {
+                            Console.WriteLine(person.ToString());
+                        }
                         break;
-                
+                    case 4:
+                        Console.WriteLine("Por favor insira o seu ");
+                        break;
                     case 0:
                         leave = true;
                         break;
