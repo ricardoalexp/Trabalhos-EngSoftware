@@ -19,6 +19,11 @@ namespace Gestão_de_Clínica_Veterinária
 
         static void Main(string[] args)
         {
+            MainMenu();
+        }
+
+        static void MainMenu()
+        {
             bool leave = false;
             int option;
 
@@ -30,7 +35,6 @@ namespace Gestão_de_Clínica_Veterinária
 
             do
             {
-
                 Console.WriteLine("Bem vindo ao software de Gestão da Clínica.");
                 Console.WriteLine("Escolha uma das opções:\n");
                 Console.WriteLine("1 - Área de Cliente");
@@ -41,7 +45,7 @@ namespace Gestão_de_Clínica_Veterinária
 
                 option = int.Parse(Console.ReadLine());
 
-                switch(option) 
+                switch (option)
                 {
                     case 1:
                         ClientMenu();
@@ -56,9 +60,8 @@ namespace Gestão_de_Clínica_Veterinária
                         leave = true;
                         break;
                 }
-                
+
             } while (!leave);
-           
         }
 
         static void ClientMenu()
@@ -131,11 +134,13 @@ namespace Gestão_de_Clínica_Veterinária
                 }
 
             } while (!leave);
+
         }
         static void ServiceMenu()
         {
             bool leave = false;
             int option;
+
             do
             {
                 Console.WriteLine("Serviços:\n");
@@ -150,7 +155,7 @@ namespace Gestão_de_Clínica_Veterinária
                 switch (option)
                 {
                     case 1:
-                        
+                        Console.WriteLine("Escolheu Opçao 1\n");
                         break;
                     case 2:
                         Console.WriteLine("Escolheu Opçao 2\n");
@@ -164,6 +169,7 @@ namespace Gestão_de_Clínica_Veterinária
                 }
 
             } while (!leave);
+
         }
 
         static void AdminMenu()
@@ -181,8 +187,7 @@ namespace Gestão_de_Clínica_Veterinária
 
                 switch (option)
                 {
-                    case 1:
-                        
+                    case 1:                        
                         Console.WriteLine("Novo Serviço:\n");
                         Console.WriteLine("Introduza o Nome do Serviço:\n");
                         string serviceName = Console.ReadLine();
@@ -203,7 +208,7 @@ namespace Gestão_de_Clínica_Veterinária
                             input = Console.ReadLine();
                             serviceMedicines.Add(input);
 
-                        } while ( !input.Equals("DONE") );
+                        } while (!input.Equals("DONE"));
 
                         Service newService = new Service(serviceName,servicePrice,serviceMedicines,serviceDuration);
                         newService.Id = regWriter.WriteToFile(newService);
