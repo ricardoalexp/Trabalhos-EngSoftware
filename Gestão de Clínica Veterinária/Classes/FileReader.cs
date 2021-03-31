@@ -99,7 +99,10 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return serviceList;
         }
 
-        //public List<ScheaduleSlot> ReadScheaduleSlot() //Falta fazer
+        //public List<ScheduleSlot> ReadScheaduleSlot() //Falta fazer
+
+        //Temos que decidir como vamos organizar os ScheduleSlots.
+        //Cada ficheiro vai conter um dia, um slot?
 
     }
 }

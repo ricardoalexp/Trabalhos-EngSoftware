@@ -14,7 +14,6 @@ namespace Gestão_de_Clínica_Veterinária
         static List<Service> Services;
         static List<ScheduleSlot> DaySchedule;
 
-
         static FileReader test = new FileReader();
 
         static void Main(string[] args)

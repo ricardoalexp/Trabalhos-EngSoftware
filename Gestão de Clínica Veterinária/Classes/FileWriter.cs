@@ -9,8 +9,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         public FileWriter()
         {
             string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
-            this.filePath = Path.GetFullPath(@"..\..\..\");
-            
+            this.filePath = Path.GetFullPath(@"..\..\..\");            
         }
 
         public int WriteToFile(Owner owner)
@@ -115,9 +114,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         }
 
         public int WriteToFile(Service service)
-        {
-            
-
+        {            
             int id;
             string relativePath = filePath + @"Resources\Services\";
 
@@ -154,9 +151,9 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         public void WriteToFile(ScheduleSlot scheduleSlot)
         {
             string line = Convert.ToString(scheduleSlot.Id) + ";"
-                + scheduleSlot.Service.Id + ";"
-                + scheduleSlot.Animal.Id + ";"
-                + scheduleSlot.Veterinary.Id + ";"
+                + scheduleSlot.ServiceId + ";"
+                + scheduleSlot.AnimalId + ";"
+                + scheduleSlot.VeterinaryId + ";"
                 + scheduleSlot.Dia + ";"
                 + scheduleSlot.HoraInicio + ";"
                 + scheduleSlot.HoraFim + ";\n";
