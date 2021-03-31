@@ -121,6 +121,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                         Console.WriteLine(scheduleSlot.ToString());
                     }
                
+
                 }
             }
             return scheduleSlotList;
