@@ -102,12 +102,11 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
         public List<ScheduleSlot> ReadScheduleSlot(string date)
         {
+
             string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Registry");
             List<Animal> animalList = new List<Animal>();
-
-            foreach (string dir in dirs)
-            {
-                if (Path.GetFileName(dir) != "não apagar.txt")
+                        
+                if (Path.GetFileName(date) != "não apagar.txt")
                 {
                     string text = File.ReadAllText(dir);
                     string[] atributes = text.Split(';');
