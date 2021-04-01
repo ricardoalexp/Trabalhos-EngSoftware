@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Gestão_de_Clínica_Veterinária.Classes
@@ -156,19 +157,27 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return id;
         }
 
-        public void WriteToFile(ScheduleSlot scheduleSlot)
+        public void WriteToFile(List <ScheduleSlot> scheduleSlots)
         {
-            string line = Convert.ToString(scheduleSlot.Id) + ";"
-                + scheduleSlot.ServiceId + ";"
-                + scheduleSlot.AnimalId + ";"
-                + scheduleSlot.VeterinaryId + ";"
+            string relativePath = filePath + @"Resources\Registry\";
+            string text = "";
+
+            foreach (ScheduleSlot scheduleSlot in scheduleSlots )
+            {
+                text = Convert.ToString(scheduleSlot.Id) + ";"
+                + Convert.ToString(scheduleSlot.ServiceId) + ";"
+                + Convert.ToString(scheduleSlot.AnimalId) + ";"
+                + Convert.ToString(scheduleSlot.VeterinaryId) + ";"
                 + scheduleSlot.Dia + ";"
                 + scheduleSlot.HoraInicio + ";"
                 + scheduleSlot.HoraFim + ";\n";
+            }
 
-            string fileName = +scheduleSlot.Id + "_scheduleSlot.txt";
+            
+            string dia = scheduleSlots[0].Dia;
+            string fileName = dia + "_scheduleSlot.txt";
 
-            File.WriteAllText(fileName, line);
+            File.WriteAllText(fileName, text);
             Console.WriteLine("Foi criado o ficheiro " + fileName + " na pasta " + filePath);
         }
     }

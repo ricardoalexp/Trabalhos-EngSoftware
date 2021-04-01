@@ -15,6 +15,11 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.Name = name;
         }
 
+        public Veterinary(string name)
+        {
+            this.Name = name;
+        }
+
         public bool Equals (Veterinary veterinary)
         {
             bool result;
