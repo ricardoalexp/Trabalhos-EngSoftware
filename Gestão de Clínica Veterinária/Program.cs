@@ -256,7 +256,6 @@ namespace Gestão_de_Clínica_Veterinária
         }
         static Animal FindAnimalById(int id)
         {
-            Animal animal;
             return null;
         }
     }
