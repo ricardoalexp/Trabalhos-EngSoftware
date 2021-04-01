@@ -32,9 +32,8 @@ namespace Gestão_de_Clínica_Veterinária
             DaySchedule = new List<ScheduleSlot>();
 
             MainMenu();
-            test.ReadAnimal();
+            //test.ReadScheduleSlot("20210331");
 
-            
         }
 
         static void MainMenu()
@@ -208,8 +207,8 @@ namespace Gestão_de_Clínica_Veterinária
                         Console.WriteLine("Introduza o Nome do Serviço:\n");
                         string serviceName = Console.ReadLine();
 
-                        Console.WriteLine("Introduza o Preço (utilizar ponto) do Serviço: \n");
-                        float servicePrice = float.Parse(Console.ReadLine());
+                        Console.WriteLine("Introduza o Preço do Serviço: \n");
+                        float servicePrice = float.Parse(Console.ReadLine().Replace('.', ','));
 
                         Console.WriteLine("Introduza a Duração do Serviço: \n");
                         Console.WriteLine("(formato hhmm)\n");

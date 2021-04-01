@@ -91,6 +91,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                         }
 
                     atributes[2] = atributes[2].Replace('.', ',');
+                  
                     Service service = new Service(int.Parse(atributes[0]), atributes[1], float.Parse(atributes[2]), medicines, int.Parse(atributes[4]));
                     Console.WriteLine(service.ToString());
 
@@ -127,11 +128,6 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             }
             return scheduleSlotList;
         }
-
-        //public List<ScheduleSlot> ReadScheaduleSlot() //Falta fazer
-
-        //Temos que decidir como vamos organizar os ScheduleSlots.
-        //Cada ficheiro vai conter um dia, um slot?
 
     }
 }

@@ -131,11 +131,17 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     fileName = relativePath + i + "_service.txt";
                 }
                 id = i;
+
                 string line = Convert.ToString(id) + ";"
                 + service.Name + ";"
-                + service.Price + ";"
-                + service.Medicine + ";"
-                + Convert.ToString(service.Duration) + ";\n";
+                + service.Price + ";";
+
+                foreach (string med in service.Medicine)
+                {
+                    line += med + ":";
+                }
+                
+                line += Convert.ToString(service.Duration) + ";\n";
 
                 File.WriteAllText(fileName, line);
                 Console.WriteLine(line);
