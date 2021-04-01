@@ -26,6 +26,14 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.Contact = contact;
         }
 
+        public List<Animal> getAnimals(List<Animal> animals)
+        {
+            List<Animal> ownerAnimals = new List<Animal>();
+            foreach(Animal animal in animals){
+                if (animal.OwnerId.Equals(this.Id)) { animals.Add(animal); }
+            }
+            return ownerAnimals;
+        }
         public bool Equals(Owner owner)
         {
             bool resultado;
