@@ -30,7 +30,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         {
             List<Animal> ownerAnimals = new List<Animal>();
             foreach(Animal animal in animals){
-                if (animal.OwnerId.Equals(this.Id)) { animals.Add(animal); }
+                if (animal.OwnerId.Equals(this.Id)) { ownerAnimals.Add(animal); }
             }
             return ownerAnimals;
         }
