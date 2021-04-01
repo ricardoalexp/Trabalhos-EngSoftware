@@ -7,50 +7,34 @@ namespace Gestão_de_Clínica_Veterinária.Classes
     class ScheduleSlot
     {
         public int Id { get; }
-        public Service Service { get; set; }
-        public Animal Animal { get; set; }
-        public Veterinary Veterinary { get; set; }
+        public int ServiceId { get; set; }
+        public int AnimalId { get; set; }
+        public int VeterinaryId { get; set; }
         public string Dia { get; set; }
         public string HoraInicio { get; set; }
         public string HoraFim { get; set; }
 
-        public ScheduleSlot(int id, Service service, Animal animal, Veterinary veterinary, string dia, string horaInicio, string horaFim)
+        public ScheduleSlot(int id, int serviceId, int animalId, int veterinaryId, string dia, string horaInicio, string horaFim)
         {
             this.Id = id;
-            this.Service = service;
-            this.Animal = animal;
-            this.Veterinary = veterinary;
+            this.ServiceId = serviceId;
+            this.AnimalId = animalId;
+            this.VeterinaryId = veterinaryId;
             this.Dia = dia;
             this.HoraInicio = horaInicio;
             this.HoraFim = horaFim;
         }
 
-        public ScheduleSlot(int id, Veterinary veterinary, string dia, string horaInicio, string horaFim)
+        public ScheduleSlot(int serviceId, int animalId, int veterinaryId, string dia, string horaInicio, string horaFim)
         {
-            this.Id = id;
-            this.Veterinary = veterinary;
+            this.ServiceId = serviceId;
+            this.AnimalId = animalId;
+            this.VeterinaryId = veterinaryId;
             this.Dia = dia;
             this.HoraInicio = horaInicio;
             this.HoraFim = horaFim;
         }
 
-        public void AddAnimal() 
-        {
-            if (this.Animal == null)
-            {
-                Console.WriteLine("Adicione o animal: ");
-                //TODO this.Animal = ler do ficheiro;
-            }
-        }
-
-        public void AddService()
-        {
-            if (this.Service == null) 
-            {
-                Console.WriteLine("Introduza o serviço desejado: ");
-                //TODO this.Service = ler do ficheiro;
-            }
-        }
         public bool Equals(ScheduleSlot scheduleSlot)
         {
             bool resultado;
@@ -64,9 +48,9 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         public override string ToString()
         {
             string text = "Id: " + this.Id + "\n";
-            text += "Serviço: " + this.Service.Name + "\n";
-            text += "Animal: " + this.Animal.Name + "\n";
-            text += "Veterinário: " + this.Veterinary.Name + "\n";
+            text += "Serviço Id: " + this.ServiceId + "\n";
+            text += "Animal Id: " + this.AnimalId + "\n";
+            text += "Veterinário Id: " + this.VeterinaryId + "\n";
             text += "Dia: " + this.Dia + "\n";
             text += "Hora de início: " + this.HoraInicio + "\n";
             text += "Hora de fim: " + this.HoraFim + "\n";
