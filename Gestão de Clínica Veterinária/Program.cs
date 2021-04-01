@@ -139,7 +139,10 @@ namespace Gestão_de_Clínica_Veterinária
                         }
                         break;
                     case 4:
-                        Console.WriteLine("Por favor insira o seu ");
+                        Console.WriteLine("Por favor insira o seu número de cliente:");
+                        int idInput = int.Parse(Console.ReadLine());
+
+                        
                         break;
                     case 0:
                         leave = true;
@@ -240,6 +243,22 @@ namespace Gestão_de_Clínica_Veterinária
 
             } while (!leave);
         }
-         
+        static Owner FindOwnerById(int id)
+        {
+            Owner owner;
+
+            foreach(Owner person in Owners)
+            {
+                if(person.Id.Equals(id)) { owner = person; return owner; }
+            }
+
+            return null;
+            
+        }
+        static Animal FindAnimalById(int id)
+        {
+            Animal animal;
+            return null;
+        }
     }
 }
