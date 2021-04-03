@@ -5,6 +5,7 @@ using System.Threading;
 using Gestão_de_Clínica_Veterinária.Classes;
 namespace Gestão_de_Clínica_Veterinária
 {
+
 	class Program
 	{
 		static FileWriter registryWriter = new FileWriter();
@@ -29,8 +30,8 @@ namespace Gestão_de_Clínica_Veterinária
             Animals = registryReader.ReadAnimal();
             Veterinaries = registryReader.ReadVeterinary();
             Services = registryReader.ReadService();
-            DaySchedule = new List<ScheduleSlot>(); //Falta Corrigir 
 
+            DaySchedule = new List<ScheduleSlot>(); //Falta Corrigir 
             MainMenu();
         }
 
@@ -387,13 +388,13 @@ namespace Gestão_de_Clínica_Veterinária
 
 		static void RegisterVeterinary()
         {
-			Console.WriteLine("Novo Veterinário\n");
-			Console.WriteLine("Introduza o nome do Veterinário\n");
-			string nameVeterinary = Console.ReadLine();
 
-			Veterinary newVeterinary = new Veterinary(nameVeterinary);
-			registryWriter.WriteToFile(newVeterinary);
-		}
+          Console.WriteLine("Novo Veterinário\n");
+          Console.WriteLine("Introduza o nome do Veterinário\n");
+          string nameVeterinary = Console.ReadLine();
 
+          Veterinary newVeterinary = new Veterinary(nameVeterinary);
+          registryWriter.WriteToFile(newVeterinary);
+        }
 	}
 }
