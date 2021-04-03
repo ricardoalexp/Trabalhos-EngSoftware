@@ -142,7 +142,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     line += med + ":";
                 }
                 
-                line += Convert.ToString(service.Duration) + ";\n";
+                line += ";" + Convert.ToString(service.Duration) + ";\n";
 
                 File.WriteAllText(fileName, line);
                 Console.WriteLine(line);

@@ -7,8 +7,8 @@ namespace Gestão_de_Clínica_Veterinária
 {
 	class Program
 	{
-		static FileWriter regWriter = new FileWriter();
-		static FileReader regReader = new FileReader();
+		static FileWriter registryWriter = new FileWriter();
+		static FileReader registryReader = new FileReader();
 
 		static List<Owner> Owners;
 		static List<Animal> Animals;
@@ -25,18 +25,13 @@ namespace Gestão_de_Clínica_Veterinária
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
 
-            Owners = regReader.ReadOwner();
-            Animals = regReader.ReadAnimal();
-            Veterinaries = regReader.ReadVeterinary();
-            Services = regReader.ReadService();
-            DaySchedule = new List<ScheduleSlot>();
+            Owners = registryReader.ReadOwner();
+            Animals = registryReader.ReadAnimal();
+            Veterinaries = registryReader.ReadVeterinary();
+            Services = registryReader.ReadService();
+            DaySchedule = new List<ScheduleSlot>(); //Falta Corrigir 
 
             MainMenu();
-
-
-            //test.ReadScheduleSlot("20210331");
-            //Console.WriteLine(GetCurrentDateString());
-
         }
 
         static void MainMenu()
@@ -94,63 +89,22 @@ namespace Gestão_de_Clínica_Veterinária
 				switch (option)
 				{
 					case 1:
-						Console.WriteLine("\nNovo Cliente: ");
-						Console.WriteLine("\nIntroduza o nome do cliente: ");
-						string ownerName = Console.ReadLine();
-
-						Console.WriteLine("\nIntroduza a morada do cliente: ");
-						string ownerAddress = Console.ReadLine();
-
-						Console.WriteLine("\nIntroduza o contacto do cliente: ");
-						long ownerContact = long.Parse(Console.ReadLine());
-
-						Owner owner = new Owner(ownerName, ownerAddress, ownerContact);
-
-						regWriter.WriteToFile(owner);
-
+						CreateNewClient();
 						break;
-
 					case 2:
-						Console.WriteLine("\nIntroduza um Animal:");
-						Console.WriteLine("\nIntroduza o Nome:");
-						string animalName = Console.ReadLine();
-
-						Console.WriteLine("\nIntroduza o Género:");
-						string animalGender = Console.ReadLine();
-
-						Console.WriteLine("\nIntroduza a Categoria:");
-						string animalCategory = Console.ReadLine();
-
-						Console.WriteLine("\nIntroduza a subcategoria:");
-						string animalSubcategory = Console.ReadLine();
-
-						Console.WriteLine("\nIntroduza o ID do Dono:");
-						int ownerId = int.Parse(Console.ReadLine());
-
-						Animal animal = new Animal(animalName, animalGender, animalCategory, animalSubcategory, ownerId);
-						animal.Id = regWriter.WriteToFile(animal);
-
-						Console.WriteLine("Adicionou:\n" + animal.ToString());
+						CreateNewAnimal();
 						break;
-
 					case 3:
-						Console.WriteLine("Clientes Registados no Sistema:\n");
-						foreach(Owner person in Owners)
-						{
-							Console.WriteLine(person.ToString());
-						}
+						ListClients();
 						break;
 					case 4:
-						Console.WriteLine("Por favor insira o seu número de cliente:");
-						int idInput = int.Parse(Console.ReadLine());
-
-						
+						ListOwnerAnimals();
 						break;
 					case 0:
 						leave = true;
 						break;
 				}
-
+			
 			} while (!leave);
 
 		}
@@ -228,18 +182,135 @@ namespace Gestão_de_Clínica_Veterinária
 		{
 			Owner owner;
 
-			foreach(Owner person in Owners)
+			foreach (Owner person in Owners)
 			{
-				if(person.Id.Equals(id)) { owner = person; return owner; }
+				if (person.Id.Equals(id)) { owner = person; return owner; }
+				if (person.Id.Equals(id)) { return person; }
 			}
 
 			return null;
-			
+
 		}
 
-		static Animal FindAnimalById(int id)
+		static Animal FindAnimalById(int id) //Falta acabar!!
 		{
-			return null;
+			Animal animal;
+			return null;			
+		}
+
+		static void CreateNewClient()
+		{
+			Console.WriteLine("\nNovo Cliente: ");
+			Console.WriteLine("\nIntroduza o nome do cliente: ");
+			string ownerName = Console.ReadLine();
+
+			Console.WriteLine("\nIntroduza a morada do cliente: ");
+			string ownerAddress = Console.ReadLine();
+
+			Console.WriteLine("\nIntroduza o contacto do cliente: ");
+			long ownerContact = long.Parse(Console.ReadLine());
+
+			Owner owner = new Owner(ownerName, ownerAddress, ownerContact);
+
+			owner.Id = registryWriter.WriteToFile(owner);
+
+			if (owner.Id.Equals(0)) { Console.WriteLine("Ocorreu um erro. Por favor tente novamente."); }
+			else { Owners.Add(owner); }
+		}
+
+		static void CreateNewAnimal()
+		{
+			Console.WriteLine("\nIntroduza um Animal:");
+			Console.WriteLine("\nIntroduza o Nome:");
+			string animalName = Console.ReadLine();
+
+			Console.WriteLine("\nIntroduza o Género:");
+			string animalGender = Console.ReadLine();
+
+			Console.WriteLine("\nIntroduza a Categoria:");
+			string animalCategory = Console.ReadLine();
+
+			Console.WriteLine("\nIntroduza a subcategoria:");
+			string animalSubcategory = Console.ReadLine();
+
+			Console.WriteLine("");
+			string input;
+			int ownerId = 0;
+			bool validId = false;
+			bool leaveInputState = false;
+			while (!validId && !leaveInputState)
+			{
+				Console.WriteLine("Introduza o ID de cliente:");
+				Console.WriteLine(@"Ou introduza 'LEAVE' para voltar ao menu)");
+				input = Console.ReadLine();
+				if (input.Equals("LEAVE")) { leaveInputState = true; }
+				else
+				{
+					if (int.TryParse(input, out ownerId))
+					{
+						if (FindOwnerById(ownerId) == null) { Console.WriteLine("\nId de cliente não encontrado. Por favor tente novamente."); }
+						else { validId = true; }
+					}
+					else { Console.WriteLine("\nInput inválido. Por favor tente novamente."); }
+				}
+			}
+			if (!leaveInputState)
+			{
+				Animal animal = new Animal(animalName, animalGender, animalCategory, animalSubcategory, ownerId);
+				animal.Id = registryWriter.WriteToFile(animal);
+				if (animal.Id.Equals(0)) { Console.WriteLine("Ocorreu um erro. Por favor tente novamente."); }
+				else { Animals.Add(animal); }
+			}
+		}
+
+		static void ListClients()
+		{
+			Console.WriteLine("Clientes Registados no Sistema:\n");
+			foreach (Owner persona in Owners)
+			{
+				Console.WriteLine(persona.ToString());
+			}
+		}
+
+		static void ListOwnerAnimals()
+		{
+			bool leaveInputState = false;
+			bool idFound = false;
+			string input;
+			int idInput;
+			Owner person;
+			List<Animal> ownerAnimals;
+			while (!idFound && !leaveInputState)
+			{
+				Console.WriteLine("Por favor insira o seu número de cliente:");
+				Console.WriteLine(@"(Ou insira 'LEAVE' para voltar ao menu");
+
+				input = Console.ReadLine();
+				if (input.Equals("LEAVE")) { leaveInputState = true; }
+				else
+				{
+					if (int.TryParse(input, out idInput))
+					{
+						person = FindOwnerById(idInput);
+						if (person == null) { Console.WriteLine("Id de cliente não encontrado. Por favor tente novamente."); }
+						else
+						{
+							ownerAnimals = person.getAnimals(Animals);
+							if (ownerAnimals.Count != 0)
+							{
+								Console.WriteLine(person.ToString() + "\n");
+								foreach (Animal bicho in ownerAnimals)
+								{
+									Console.WriteLine(bicho.ToString() + "\n");
+								}
+								idFound = true;
+							}
+							else { Console.WriteLine("O Cliente selecionado não tem nenhum animal registado."); }
+						}
+					}
+					else { Console.WriteLine("Input inválido. Por favor tente novamente."); }
+				}
+			}
 		}
 
 		static string GetCurrentDateString()
@@ -251,11 +322,11 @@ namespace Gestão_de_Clínica_Veterinária
 
 		static void ListService()
 		{
-			if (Services != null)
+			if (Services.Count != 0)
 			{
 				foreach (Service service in Services)
 				{
-					service.ToString();
+					Console.WriteLine(service);
 				}
 			}
 			else
@@ -266,17 +337,16 @@ namespace Gestão_de_Clínica_Veterinária
 
 		static void ListVeterinaries()
 		{
-			if (Veterinaries != null)
+			if (Veterinaries.Count != 0)
 			{
 				foreach (Veterinary veterinary in Veterinaries)
 				{
-					veterinary.ToString();
+					Console.WriteLine(veterinary);
 				}
 			}
 			else
 			{
 				Console.WriteLine("Não existem Veterinários no sistema");
-
 			}
 		}
 
@@ -308,20 +378,22 @@ namespace Gestão_de_Clínica_Veterinária
 			} while (!input.Equals("DONE"));
 
 			Service newService = new Service(serviceName, servicePrice, serviceMedicines, serviceDuration);
-			newService.Id = regWriter.WriteToFile(newService);
+			newService.Id = registryWriter.WriteToFile(newService);
+
+			if (newService.Id.Equals(0)) { Console.WriteLine("Ocorreu um erro. Por favor tente novamente."); }
+			else { Services.Add(newService); }
+
 		}
 
 		static void RegisterVeterinary()
-                        {
-							Console.WriteLine("Novo Veterinário\n");
-							Console.WriteLine("Introduza o nome do Veterinário\n");
-							string nameVeterinary = Console.ReadLine();
+        {
+			Console.WriteLine("Novo Veterinário\n");
+			Console.WriteLine("Introduza o nome do Veterinário\n");
+			string nameVeterinary = Console.ReadLine();
 
-							Veterinary newVeterinary = new Veterinary(nameVeterinary);
-							regWriter.WriteToFile(newVeterinary);
-						}
-
-
+			Veterinary newVeterinary = new Veterinary(nameVeterinary);
+			registryWriter.WriteToFile(newVeterinary);
+		}
 
 	}
 }
