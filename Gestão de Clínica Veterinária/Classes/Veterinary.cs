@@ -6,12 +6,17 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 {
     class Veterinary
     {
-        public int Id { get; }
+        public int Id { get; set; }
         public string Name { get; set; }
 
         public Veterinary (int id, string name)
         {
             this.Id = id;
+            this.Name = name;
+        }
+
+        public Veterinary(string name)
+        {
             this.Name = name;
         }
 

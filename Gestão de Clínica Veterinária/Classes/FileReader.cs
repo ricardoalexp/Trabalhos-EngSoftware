@@ -19,7 +19,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     string[] atributes = text.Split(';');
 
                     Veterinary vet = new Veterinary(int.Parse(atributes[0]), atributes[1]);
-                    Console.WriteLine(vet.ToString());
+                    //Console.WriteLine(vet.ToString());
 
                     vetList.Add(vet);
                 }
@@ -40,7 +40,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     string[] atributes = text.Split(';');
 
                     Owner owner = new Owner(int.Parse(atributes[0]), atributes[1], atributes[2], long.Parse(atributes[3]));
-                    Console.WriteLine(owner.ToString());
+                    //Console.WriteLine(owner.ToString());
 
                     ownerList.Add(owner);
                 }
@@ -61,7 +61,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     string[] atributes = text.Split(';');
 
                     Animal animal = new Animal(int.Parse(atributes[0]), atributes[1], atributes[2], atributes[3], atributes[4], int.Parse(atributes[5]));
-                    Console.WriteLine(animal.ToString());
+                    //Console.WriteLine(animal.ToString());
 
                     animalList.Add(animal);
                 }
@@ -93,7 +93,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     atributes[2] = atributes[2].Replace('.', ',');
                   
                     Service service = new Service(int.Parse(atributes[0]), atributes[1], float.Parse(atributes[2]), medicines, int.Parse(atributes[4]));
-                    Console.WriteLine(service.ToString());
+                    //Console.WriteLine(service.ToString());
 
                     serviceList.Add(service);
                 }
@@ -120,12 +120,13 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
                         scheduleSlotList.Add(scheduleSlot);
 
-                        Console.WriteLine(scheduleSlot.ToString());
+                        //Console.WriteLine(scheduleSlot.ToString());
                     }
                
-
                 }
+
             }
+
             return scheduleSlotList;
         }
 
