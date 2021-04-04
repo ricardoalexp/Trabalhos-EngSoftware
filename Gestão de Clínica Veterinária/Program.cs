@@ -16,7 +16,7 @@ namespace Gestão_de_Clínica_Veterinária
 		static List<Veterinary> Veterinaries;
 		static List<Service> Services;
 		static List<ScheduleSlot> DaySchedule;
-
+		
 		static FileReader test = new FileReader();
 
 		static void Main(string[] args)
@@ -40,33 +40,38 @@ namespace Gestão_de_Clínica_Veterinária
 			bool leave = false;
 			int option;
 
+			Console.WriteLine("Bem vindo ao software de Gestão da Clínica.");
 			do
 			{
-				Console.WriteLine("Bem vindo ao software de Gestão da Clínica.");
+				
 				Console.WriteLine("Escolha uma das opções:\n");
 				Console.WriteLine("1 - Área de Cliente");
 				Console.WriteLine("2 - Serviços");
 				Console.WriteLine("3 - Área de Administrador");
 				Console.WriteLine("0 - Sair");
 
-				option = int.Parse(Console.ReadLine());
-
-				switch (option)
+				if (!int.TryParse(Console.ReadLine(), out option)) { Console.WriteLine("Input inválido. Tente novamente."); }
+				else
 				{
-					case 1:
-						ClientMenu();
-						break;
-					case 2:
-						ServiceMenu();
-						break;
-					case 3:
-						AdminMenu();
-						break;
-					case 0:
-						leave = true;
-						break;
+					switch (option)
+					{
+						case 1:
+							ClientMenu();
+							break;
+						case 2:
+							ServiceMenu();
+							break;
+						case 3:
+							AdminMenu();
+							break;
+						case 0:
+							leave = true;
+							break;
+						default:
+							Console.WriteLine("Opção inválida. Tente novamente. \n");
+							break;
+					}
 				}
-
 			} while (!leave);
 		}
 
@@ -81,31 +86,35 @@ namespace Gestão_de_Clínica_Veterinária
 				Console.WriteLine("2 - Registar Animal");
 				Console.WriteLine("3 - Listar Clientes");
 				Console.WriteLine("4 - Listar Animais de um Cliente");
-				Console.WriteLine("5 - Relatório de Cliente");
-				Console.WriteLine("6 - Relatório de Animal");
-				Console.WriteLine("0 - Sair");
+				Console.WriteLine("5 - Relatório de Cliente"); // falta implementar
+				Console.WriteLine("6 - Relatório de Animal"); // falta implementar
+				Console.WriteLine("0 - Voltar Atrás");
 
-				option = int.Parse(Console.ReadLine());
-
-				switch (option)
+				if (!int.TryParse(Console.ReadLine(), out option)) { Console.WriteLine("Input inválido. Tente novamente."); }
+				else
 				{
-					case 1:
-						CreateNewClient();
-						break;
-					case 2:
-						CreateNewAnimal();
-						break;
-					case 3:
-						ListClients();
-						break;
-					case 4:
-						ListOwnerAnimals();
-						break;
-					case 0:
-						leave = true;
-						break;
+					switch (option)
+					{
+						case 1:
+							CreateNewClient();
+							break;
+						case 2:
+							CreateNewAnimal();
+							break;
+						case 3:
+							ListClients();
+							break;
+						case 4:
+							ListOwnerAnimals();
+							break;
+						case 0:
+							leave = true;
+							break;
+						default:
+							Console.WriteLine("Opção inválida. Tente novamente. \n");
+							break;
+					}
 				}
-			
 			} while (!leave);
 
 		}
@@ -117,33 +126,41 @@ namespace Gestão_de_Clínica_Veterinária
 			do
 			{
 				Console.WriteLine("Serviços:\n");
-				Console.WriteLine("1 - Listar Serviços");
+				Console.WriteLine("1 - Listar Serviços"); 
 				Console.WriteLine("2 - Listar Profissionais");
-				Console.WriteLine("3 - Listar Marcações do Dia");
-				Console.WriteLine("4 - Fazer Marcação");
-				Console.WriteLine("0 - Sair");
+				Console.WriteLine("3 - Listar Marcações do Dia"); // falta implementar
+				Console.WriteLine("4 - Fazer Marcação"); // falta implementar
+				Console.WriteLine("0 - Voltar Atrás");
 
-				option = int.Parse(Console.ReadLine());
 
-				switch (option)
+				if (!int.TryParse(Console.ReadLine(), out option)) { Console.WriteLine("Input inválido. Tente novamente."); }
+				else
 				{
-					case 1:						
-						Console.WriteLine("Escolheu Opção 1\n");
-						ListService();					
-						break;
-					case 2:
-						Console.WriteLine("Escolheu Opção 2\n");
-						ListVeterinaries();                        
-						break;
-					case 3:
-						Console.WriteLine("Escolheu Opção 3\n");
-						//Falta fazer!!!
-						break;
-					case 0:
-						leave = true;
-						break;
+					switch (option)
+					{
+						case 1:
+							Console.WriteLine("Escolheu Opção 1\n");
+							ListServices();
+							break;
+						case 2:
+							Console.WriteLine("Escolheu Opção 2\n");
+							ListVeterinaries();
+							break;
+						case 3:
+							Console.WriteLine("Escolheu Opção 3\n");
+							//Falta fazer!!!
+							break;
+						case 4:
+							CreateAppointment();
+							break;
+						case 0:
+							leave = true;
+							break;
+						default:
+							Console.WriteLine("Opção inválida. Tente novamente. \n");
+							break;
+					}
 				}
-
 			} while (!leave);
 
 		}
@@ -157,25 +174,29 @@ namespace Gestão_de_Clínica_Veterinária
 				Console.WriteLine("Área de Administrador:\n");
 				Console.WriteLine("1 - Registar novo serviço");
 				Console.WriteLine("2 - Registar novo veterinário");
-				Console.WriteLine("0 - Sair");
+				Console.WriteLine("0 - Voltar Atrás");
 
-				option = int.Parse(Console.ReadLine());
-
-				switch (option)
+				if (!int.TryParse(Console.ReadLine(), out option)) { Console.WriteLine("Input inválido. Tente novamente."); }
+				else
 				{
-					case 1:
-						Console.WriteLine("Escolheu Opção 1\n");
-						RegisterService();
-						break;
-					case 2:
-						Console.WriteLine("Escolheu Opção 2\n");
-						RegisterVeterinary();
-						break;
-					case 0:
-						leave = true;
-						break;
+					switch (option)
+					{
+						case 1:
+							Console.WriteLine("Escolheu Opção 1\n");
+							RegisterService();
+							break;
+						case 2:
+							Console.WriteLine("Escolheu Opção 2\n");
+							RegisterVeterinary();
+							break;
+						case 0:
+							leave = true;
+							break;
+						default:
+							Console.WriteLine("Opção inválida. Tente novamente. \n");
+							break;
+					}
 				}
-
 			} while (!leave);
 		}
 
@@ -193,12 +214,148 @@ namespace Gestão_de_Clínica_Veterinária
 
 		}
 
-		static Animal FindAnimalById(int id) //Falta acabar!!
+		static Animal FindAnimalById(int id)
 		{
-			Animal animal;
+			foreach(Animal animal in Animals)
+            {
+                if (animal.Id.Equals(id)) { return animal; }
+            }
 			return null;			
 		}
+		static Service FindServiceById(int id)
+        {
+			foreach (Service service in Services)
+			{
+				if (service.Id.Equals(id)) { return service; }
+			}
+			return null;
+		}
+		static Veterinary FindVeterinaryById(int id)
+		{
+			foreach (Veterinary veterinary in Veterinaries)
+			{
+				if (veterinary.Id.Equals(id)) { return veterinary; }
+			}
+			return null;
+		}
+		static void CreateAppointment()
+        {
+			bool leaveInputState = false;
+			bool idFound = false;
+			string input = "";
+			int idInput = 0;
+			Owner person;
+			List<Animal> ownerAnimals;
+			Console.WriteLine("\nFazer marcação: ");
+			Console.WriteLine("\nIntroduza o ID do cliente: ");
 
+			while (!idFound && !leaveInputState)
+			{
+				Console.WriteLine("Por favor insira o seu número de cliente:");
+				Console.WriteLine(@"(Ou insira 'LEAVE' para voltar ao menu");
+
+				input = Console.ReadLine();
+				if (input.Equals("LEAVE")) { leaveInputState = true; }
+				else
+				{
+					if (int.TryParse(input, out idInput))
+					{
+						person = FindOwnerById(idInput);
+						if (person == null) { Console.WriteLine("Id de cliente não encontrado. Por favor tente novamente."); }
+						else
+						{
+							ownerAnimals = person.getAnimals(Animals);
+							if (ownerAnimals.Count != 0)
+							{
+								Console.WriteLine("Cliente selecionado:");
+								Console.WriteLine(" " + person.Id + " - " + person.Name  + "\n");
+								Console.WriteLine("Animais Registados:");
+								foreach (Animal animal in ownerAnimals)
+								{
+									Console.WriteLine(" " + animal.Id + " - " + animal.Name);
+								}
+								idFound = true;
+							}
+							else { Console.WriteLine("O Cliente selecionado não tem nenhum animal registado."); }
+						}
+					}
+					else { Console.WriteLine("Input inválido. Por favor tente novamente."); }
+				}
+			}
+			
+			if (!leaveInputState)
+            {
+				idFound = false;
+				Animal animal;
+				while (!idFound && !leaveInputState)
+				{
+					Console.WriteLine("Por favor insira o ID do animal a usar:");
+					Console.WriteLine(@"(Ou insira 'LEAVE' para voltar ao menu");
+
+					input = Console.ReadLine();
+					if (input.Equals("LEAVE")) { leaveInputState = true; }
+					else
+					{
+						if (int.TryParse(input, out idInput))
+						{
+							animal = FindAnimalById(idInput);
+							if (animal == null) { Console.WriteLine("Id de animal não encontrado. Por favor tente novamente."); }
+							else { idFound = true; }
+						}
+						else { Console.WriteLine("Input inválido. Por favor tente novamente."); }
+					}
+				}
+			}
+			int animalId = idInput;
+			if (!leaveInputState)
+			{
+				idFound = false;
+				ListServicesShort();
+				Service service;
+				while (!idFound && !leaveInputState)
+				{
+					Console.WriteLine("Por favor insira o ID do serviço a agendar:");
+					Console.WriteLine(@"(Ou insira 'LEAVE' para voltar ao menu");
+
+					input = Console.ReadLine();
+					if (input.Equals("LEAVE")) { leaveInputState = true; }
+					else
+					{
+						if (int.TryParse(input, out idInput))
+						{
+							service = FindServiceById(idInput);
+							if (service == null) { Console.WriteLine("Id de serviço não encontrado. Por favor tente novamente."); }
+							else { idFound = true; }
+						}
+						else { Console.WriteLine("Input inválido. Por favor tente novamente."); }
+					}
+				}
+			}
+			int serviceId = idInput;
+			bool validDate = false;
+            if (!leaveInputState)
+            {
+				idFound = false;
+				while (!validDate && !leaveInputState)
+				{
+					Console.WriteLine("Por favor insira a data a agendar:");
+					Console.WriteLine(@"(Ou insira 'LEAVE' para voltar ao menu");
+
+					input = Console.ReadLine();
+					if (input.Equals("LEAVE")) { leaveInputState = true; }
+					else
+					{
+						if (CheckDateFormat(input))
+						{
+							validDate = true;
+						}
+						else { Console.WriteLine("Data inválida. Por favor tente novamente."); }
+					}
+				}
+			}
+			string date = input;
+			Console.WriteLine("Data inserida: " + date);
+		}
 		static void CreateNewClient()
 		{
 			Console.WriteLine("\nNovo Cliente: ");
@@ -314,14 +471,31 @@ namespace Gestão_de_Clínica_Veterinária
 			}
 		}
 
-		static string GetCurrentDateString()
+		static string GetDateString(string date)
 		{
-			string date = DateTime.UtcNow.ToString("MM-dd-yyyy");
 			date = date.Replace("-", "");
 			return date;
 		}
+		static string GetCurrentDate()
+        {
+			string date = DateTime.UtcNow.ToString("dd-MM-yyyy");
 
-		static void ListService()
+			date = GetDateString(date);
+			return date;
+		}
+		static bool CheckDateFormat(string date)
+        {
+			try
+			{
+				DateTime dt = DateTime.Parse(date);
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
+		static void ListServices()
 		{
 			if (Services.Count != 0)
 			{
@@ -335,7 +509,21 @@ namespace Gestão_de_Clínica_Veterinária
 				Console.WriteLine("Não existem serviços no sistema");
 			}
 		}
-
+		static void ListServicesShort()
+		{
+			Console.WriteLine("");
+			if (Services.Count != 0)
+			{
+				foreach (Service service in Services)
+				{
+					Console.WriteLine(service.ToShortString());
+				}
+			}
+			else
+			{
+				Console.WriteLine("Não existem serviços no sistema");
+			}
+		}
 		static void ListVeterinaries()
 		{
 			if (Veterinaries.Count != 0)
