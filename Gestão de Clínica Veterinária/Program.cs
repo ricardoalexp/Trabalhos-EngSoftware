@@ -10,6 +10,7 @@ namespace Gestão_de_Clínica_Veterinária
 	{
 		static FileWriter registryWriter = new FileWriter();
 		static FileReader registryReader = new FileReader();
+		static CustomDateTime dateTime = new CustomDateTime();
 
 		static List<Owner> Owners;
 		static List<Animal> Animals;
@@ -32,6 +33,7 @@ namespace Gestão_de_Clínica_Veterinária
             Services = registryReader.ReadService();
 
             DaySchedule = new List<ScheduleSlot>(); //Falta Corrigir 
+			Console.WriteLine(CustomDateTime.CurrentTime());
             MainMenu();
         }
 
@@ -307,11 +309,13 @@ namespace Gestão_de_Clínica_Veterinária
 				}
 			}
 			int animalId = idInput;
+			int serviceDuration = 0;
 			if (!leaveInputState)
 			{
 				idFound = false;
 				ListServicesShort();
 				Service service;
+				
 				while (!idFound && !leaveInputState)
 				{
 					Console.WriteLine("Por favor insira o ID do serviço a agendar:");
@@ -325,7 +329,7 @@ namespace Gestão_de_Clínica_Veterinária
 						{
 							service = FindServiceById(idInput);
 							if (service == null) { Console.WriteLine("Id de serviço não encontrado. Por favor tente novamente."); }
-							else { idFound = true; }
+							else { idFound = true; serviceDuration = service.Duration; }
 						}
 						else { Console.WriteLine("Input inválido. Por favor tente novamente."); }
 					}
@@ -345,16 +349,31 @@ namespace Gestão_de_Clínica_Veterinária
 					if (input.Equals("LEAVE")) { leaveInputState = true; }
 					else
 					{
-						if (CheckDateFormat(input))
-						{
-							validDate = true;
-						}
+						if (CustomDateTime.AppointmentDateValidate(input)){validDate = true;}
 						else { Console.WriteLine("Data inválida. Por favor tente novamente."); }
 					}
 				}
 			}
-			string date = input;
-			Console.WriteLine("Data inserida: " + date);
+			string date = "";
+			string timeInput = "";
+			if (!leaveInputState) {
+				date = CustomDateTime.FormatDate(input);
+				Console.WriteLine("Data inserida: " + date);
+				while (!idFound && !leaveInputState)
+				{
+					Console.WriteLine("Por favor insira a hora a agendar:");
+					Console.WriteLine(@"(Ou insira 'LEAVE' para voltar ao menu");
+					Console.WriteLine("Note que o serviço escolhido tem a seguinte duração: " + CustomDateTime.MinutesDurationFormat(serviceDuration));
+
+					input = Console.ReadLine();
+					if (input.Equals("LEAVE")) { leaveInputState = true; }
+					else
+					{
+						if (CustomDateTime.CheckDateTimeFormat(input)) { timeInput = input; }
+						else { Console.WriteLine("Input inválido. Por favor tente novamente."); }
+					}
+				}
+			}
 		}
 		static void CreateNewClient()
 		{
@@ -471,30 +490,6 @@ namespace Gestão_de_Clínica_Veterinária
 			}
 		}
 
-		static string GetDateString(string date)
-		{
-			date = date.Replace("-", "");
-			return date;
-		}
-		static string GetCurrentDate()
-        {
-			string date = DateTime.UtcNow.ToString("dd-MM-yyyy");
-
-			date = GetDateString(date);
-			return date;
-		}
-		static bool CheckDateFormat(string date)
-        {
-			try
-			{
-				DateTime dt = DateTime.Parse(date);
-				return true;
-			}
-			catch
-			{
-				return false;
-			}
-		}
 		static void ListServices()
 		{
 			if (Services.Count != 0)
@@ -521,6 +516,7 @@ namespace Gestão_de_Clínica_Veterinária
 			}
 			else
 			{
+				CustomDateTime.CurrentDate();
 				Console.WriteLine("Não existem serviços no sistema");
 			}
 		}
