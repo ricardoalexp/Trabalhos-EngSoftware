@@ -7,12 +7,18 @@ namespace Gestão_de_Clínica_Veterinária.Classes
     class FileWriter
     {
         private string filePath;
+
         public FileWriter()
         {
             string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
             this.filePath = Path.GetFullPath(@"..\..\..\");            
         }
 
+        /// <summary>
+        /// Recebe um owner e escreve um ficheiro com os dados do mesmo
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <returns></returns>
         public int WriteToFile(Owner owner)
         {
             int id;
@@ -46,6 +52,11 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return id;
         }
 
+        /// <summary>
+        /// Recebe um animal e escreve um ficheiro com os dados do mesmo
+        /// </summary>
+        /// <param name="animal"></param>
+        /// <returns></returns>
         public int WriteToFile(Animal animal)
         {
             int id;
@@ -85,6 +96,11 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return id;
         }
 
+        /// <summary>
+        /// Recebe um veterinary e escreve um ficheiro com os dados do mesmo
+        /// </summary>
+        /// <param name="veterinary"></param>
+        /// <returns></returns>
         public int WriteToFile(Veterinary veterinary)
         {
             int id;
@@ -117,6 +133,11 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return id;
         }
 
+        /// <summary>
+        /// Recebe um service e escreve um ficheiro com os dados do mesmo
+        /// </summary>
+        /// <param name="service"></param>
+        /// <returns></returns>
         public int WriteToFile(Service service)
         {            
             int id;
@@ -157,7 +178,11 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return id;
         }
 
-        public void WriteToFile(List <ScheduleSlot> scheduleSlots)
+        /// <summary>
+        /// Recebe um scheduleSlots e escreve um ficheiro com os dados do mesmo
+        /// </summary>
+        /// <param name="scheduleSlots"></param>
+        public void WriteToFile(List <ScheduleSlot> scheduleSlots) //Falta corrigir!!!
         {
             string relativePath = filePath + @"Resources\Registry\";
             string text = "";

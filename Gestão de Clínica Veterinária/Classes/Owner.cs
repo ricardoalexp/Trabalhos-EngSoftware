@@ -19,6 +19,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.Address = address;
             this.Contact = contact;
         }
+
         public Owner(string name, string address, long contact)
         {
             this.Name = name;
@@ -26,6 +27,11 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.Contact = contact;
         }
 
+        /// <summary>
+        /// Recebe uma lista de animais e retorna a lista dos animais que pertencem ao owner que invocou este método
+        /// </summary>
+        /// <param name="animals"></param>
+        /// <returns></returns>
         public List<Animal> getAnimals(List<Animal> animals)
         {
             List<Animal> ownerAnimals = new List<Animal>();
@@ -34,6 +40,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             }
             return ownerAnimals;
         }
+
         public bool Equals(Owner owner)
         {
             bool resultado;
@@ -43,6 +50,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
             return resultado;
         }
+
         public override string ToString()
         {
             string text = "Id: " + this.Id + "\n";
