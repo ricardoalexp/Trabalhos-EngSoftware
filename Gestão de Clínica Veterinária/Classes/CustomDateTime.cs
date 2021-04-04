@@ -47,13 +47,13 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         }
         public static string CurrentTime()
         {
-            string date = DateTime.UtcNow.ToString("HHmm");
+            string date = DateTime.UtcNow.ToLocalTime().ToString("HH:mm");
             return date;
         }
         public static string MinutesDurationFormat(int minutes)
         {
             DateTime time = DateTime.Parse("00:00");
-            time.AddMinutes(minutes);
+            time = time.AddMinutes(minutes);
 
             return time.ToString("HH:mm");
         }

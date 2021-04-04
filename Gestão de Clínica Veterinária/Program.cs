@@ -33,7 +33,7 @@ namespace Gestão_de_Clínica_Veterinária
             Services = registryReader.ReadService();
 
             DaySchedule = new List<ScheduleSlot>(); //Falta Corrigir 
-			Console.WriteLine(CustomDateTime.CurrentTime());
+			Console.WriteLine(CustomDateTime.CurrentTime() + "  " + CustomDateTime.CurrentDate());
             MainMenu();
         }
 
