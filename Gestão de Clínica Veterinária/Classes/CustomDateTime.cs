@@ -22,6 +22,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
             return appointmentDate >= currentDate ? true : false;
         }
+
         public static bool CheckDateTimeFormat(string dateTime)
         {
             try
@@ -34,22 +35,26 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                 return false;
             }
         }
+
         public static string CurrentDate()
         {
             string date = DateTime.UtcNow.ToString("dd-MM-yyyy");
             return date;
         }
+
         public static string FormatDate(string date)
         {
             DateTime dateTime = DateTime.Parse(date);
             string formattedDate = dateTime.ToString("dd-MM-yyyy");
             return formattedDate;
         }
+
         public static string CurrentTime()
         {
             string date = DateTime.UtcNow.ToString("HHmm");
             return date;
         }
+
         public static string MinutesDurationFormat(int minutes)
         {
             DateTime time = DateTime.Parse("00:00");

@@ -5,7 +5,6 @@ using System.Threading;
 using Gestão_de_Clínica_Veterinária.Classes;
 namespace Gestão_de_Clínica_Veterinária
 {
-
 	class Program
 	{
 		//Instâncias de objetos para ler e escrever ficheiros
@@ -26,8 +25,8 @@ namespace Gestão_de_Clínica_Veterinária
             culture.NumberFormat.NumberDecimalSeparator = ",";
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
-
-            Owners = registryReader.ReadOwner();
+			
+			Owners = registryReader.ReadOwner();
             Animals = registryReader.ReadAnimal();
             Veterinaries = registryReader.ReadVeterinary();
             Services = registryReader.ReadService();
@@ -36,6 +35,7 @@ namespace Gestão_de_Clínica_Veterinária
 			Console.WriteLine(CustomDateTime.CurrentTime());
             MainMenu();
         }
+
 
 
 		//-----------------Funções auxilares-----------------
@@ -84,6 +84,7 @@ namespace Gestão_de_Clínica_Veterinária
 				}
 			} while (!leave);
 		}
+
 		/// <summary>
 		/// Representação Visual do Menu do Cliente
 		/// </summary>
@@ -130,6 +131,7 @@ namespace Gestão_de_Clínica_Veterinária
 			} while (!leave);
 
 		}
+
 		/// <summary>
 		/// Representação Visual do Menu dos Serviços
 		/// </summary>
@@ -179,6 +181,7 @@ namespace Gestão_de_Clínica_Veterinária
 			} while (!leave);
 
 		}
+
 		/// <summary>
 		/// Representação Visual do Menu do Administrador
 		/// </summary>
@@ -235,6 +238,7 @@ namespace Gestão_de_Clínica_Veterinária
 			return null;
 
 		}
+
 		/// <summary>
 		/// Devolve o Objeto da classe "Animal" que tem o id introduzido
 		/// </summary>
@@ -246,6 +250,7 @@ namespace Gestão_de_Clínica_Veterinária
             }
 			return null;			
 		}
+
 		/// <summary>
 		/// Devolve o Objeto da classe "Service" que tem o id introduzido
 		/// </summary>
@@ -257,6 +262,7 @@ namespace Gestão_de_Clínica_Veterinária
 			}
 			return null;
 		}
+
 		/// <summary>
 		/// Devolve o Objeto da classe "Veterinary" que tem o id introduzido
 		/// </summary>
@@ -409,6 +415,7 @@ namespace Gestão_de_Clínica_Veterinária
 				}
 			}
 		}
+
 		/// <summary>
 		/// Cria um novo cliente através de dados que o utilizador introduz. Guarda no ficheiro e adiciona à lista dos clientes em memória.
 		/// </summary>
@@ -431,6 +438,7 @@ namespace Gestão_de_Clínica_Veterinária
 			if (owner.Id.Equals(0)) { Console.WriteLine("Ocorreu um erro. Por favor tente novamente."); }
 			else { Owners.Add(owner); }
 		}
+
 		/// <summary>
 		/// Cria um novo animal através de dados que o utilizador introduz. Guarda no ficheiro e adiciona à lista dos clientes em memória.
 		/// </summary>
@@ -478,6 +486,7 @@ namespace Gestão_de_Clínica_Veterinária
 				else { Animals.Add(animal); }
 			}
 		}
+
 		/// <summary>
 		/// Mostra a lista dos clientes em memória
 		/// </summary>
@@ -553,6 +562,7 @@ namespace Gestão_de_Clínica_Veterinária
 				Console.WriteLine("Não existem serviços no sistema");
 			}
 		}
+
 		/// <summary>
 		/// Mostra a versão simplificada da lista dos serviços em memória
 		/// </summary>
@@ -572,6 +582,7 @@ namespace Gestão_de_Clínica_Veterinária
 				Console.WriteLine("Não existem serviços no sistema");
 			}
 		}
+
 		/// <summary>
 		/// Mostra a lista dos veterinários em memória
 		/// </summary>
@@ -589,6 +600,7 @@ namespace Gestão_de_Clínica_Veterinária
 				Console.WriteLine("Não existem Veterinários no sistema");
 			}
 		}
+
 		/// <summary>
 		/// Pede ao utilizador os dados de um serviço e guarda o mesmo em memória e em ficheiro
 		/// </summary>
