@@ -51,7 +51,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
         public static string CurrentTime()
         {
-            string date = DateTime.UtcNow.ToString("HHmm");
+            string date = DateTime.UtcNow.ToLocalTime().ToString("HHmm");
             return date;
         }
 
