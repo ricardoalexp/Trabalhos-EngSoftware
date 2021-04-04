@@ -136,7 +136,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     {
                         string[] atributes = line.Split(';');
 
-                        ScheduleSlot scheduleSlot = new ScheduleSlot(int.Parse(atributes[0]), int.Parse(atributes[1]), int.Parse(atributes[2]), int.Parse(atributes[3]), atributes[4], atributes[5], atributes[6]);
+                        ScheduleSlot scheduleSlot = new ScheduleSlot(int.Parse(atributes[0]), int.Parse(atributes[1]), int.Parse(atributes[2]), int.Parse(atributes[3]), atributes[4], int.Parse(atributes[5]), int.Parse(atributes[6]));
 
                         scheduleSlotList.Add(scheduleSlot);
 

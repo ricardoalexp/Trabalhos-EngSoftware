@@ -11,10 +11,10 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         public int AnimalId { get; set; }
         public int VeterinaryId { get; set; }
         public string Dia { get; set; }
-        public string HoraInicio { get; set; }
-        public string HoraFim { get; set; }
+        public int HoraInicio { get; set; }
+        public int HoraFim { get; set; }
 
-        public ScheduleSlot(int id, int serviceId, int animalId, int veterinaryId, string dia, string horaInicio, string horaFim)
+        public ScheduleSlot(int id, int serviceId, int animalId, int veterinaryId, string dia, int horaInicio, int horaFim)
         {
             this.Id = id;
             this.ServiceId = serviceId;
@@ -25,7 +25,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.HoraFim = horaFim;
         }
 
-        public ScheduleSlot(int serviceId, int animalId, int veterinaryId, string dia, string horaInicio, string horaFim)
+        public ScheduleSlot(int serviceId, int animalId, int veterinaryId, string dia, int horaInicio, int horaFim)
         {
             this.ServiceId = serviceId;
             this.AnimalId = animalId;
@@ -34,7 +34,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.HoraInicio = horaInicio;
             this.HoraFim = horaFim;
         }
-
+        
         public bool Equals(ScheduleSlot scheduleSlot)
         {
             bool resultado;
