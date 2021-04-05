@@ -9,6 +9,11 @@
   <ItemGroup>
     <Folder Include="Classes\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Resources\Clients\" />
+    <Folder Include="Resources\Animals\" />
+    <Folder Include="Resources\Veterinaries\" />
+    <Folder Include="Resources\Registry\" />
+    <Folder Include="Resources\Services\" />
   </ItemGroup>
 
 </Project>
