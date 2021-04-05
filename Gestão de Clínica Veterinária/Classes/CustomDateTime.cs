@@ -7,7 +7,6 @@ namespace Gestão_de_Clínica_Veterinária.Classes
    
     class CustomDateTime
     {
-        private DateTime dateTime;
         private string Date { get; set; }
 
         public static bool AppointmentDateValidate(string date)
@@ -63,6 +62,28 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             time = time.AddMinutes(minutes);
 
             return time.ToString("HH:mm");
+        }
+
+        public static string GetAppointmentEndTime(string inicio, int duracao)
+        {
+            DateTime duration = DateTime.Parse(MinutesDurationFormat(duracao));
+            DateTime start = DateTime.Parse(inicio);
+            start.AddMinutes(duration.Minute);
+            start.AddHours(duration.Hour);
+
+            return start.ToString("HH:mm");
+        }
+
+        public static string StringTimeFormat(int time)
+        {
+            DateTime stringTime = DateTime.Parse(Convert.ToString(time));
+            return stringTime.ToString("HH:mm");
+        }
+
+        public static int IntegerTimeFormat(string time)
+        {
+            DateTime intTime = DateTime.Parse(time);
+            return int.Parse(intTime.ToString("HHmm"));
         }
 
     }
