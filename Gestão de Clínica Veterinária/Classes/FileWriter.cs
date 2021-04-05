@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Gestão_de_Clínica_Veterinária.Classes
@@ -6,12 +7,14 @@ namespace Gestão_de_Clínica_Veterinária.Classes
     class FileWriter
     {
         private string filePath;
+
         public FileWriter()
         {
             string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
             this.filePath = Path.GetFullPath(@"..\..\..\");            
         }
 
+        
         public int WriteToFile(Owner owner)
         {
             int id;
@@ -45,6 +48,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return id;
         }
 
+        
         public int WriteToFile(Animal animal)
         {
             int id;
@@ -68,8 +72,10 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     + animal.Subcategory + ";"
                     + animal.OwnerId + ";\n";
 
-
-                File.WriteAllText(fileName, line);
+                using (StreamWriter sw = File.AppendText(fileName))
+                {
+                    sw.WriteLine(line);
+                }
                 Console.WriteLine(line);
 
             }
@@ -82,6 +88,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return id;
         }
 
+        
         public int WriteToFile(Veterinary veterinary)
         {
             int id;
@@ -114,6 +121,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return id;
         }
 
+        
         public int WriteToFile(Service service)
         {            
             int id;
@@ -129,11 +137,17 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     fileName = relativePath + i + "_service.txt";
                 }
                 id = i;
+
                 string line = Convert.ToString(id) + ";"
                 + service.Name + ";"
-                + service.Price + ";"
-                + service.Medicine + ";"
-                + Convert.ToString(service.Duration) + ";\n";
+                + service.Price + ";";
+
+                foreach (string med in service.Medicine)
+                {
+                    line += med + ":";
+                }
+                
+                line += ";" + Convert.ToString(service.Duration) + ";\n";
 
                 File.WriteAllText(fileName, line);
                 Console.WriteLine(line);
@@ -148,19 +162,28 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return id;
         }
 
-        public void WriteToFile(ScheduleSlot scheduleSlot)
+        
+        public void WriteToFile(List <ScheduleSlot> scheduleSlots) //Falta corrigir!!!
         {
-            string line = Convert.ToString(scheduleSlot.Id) + ";"
-                + scheduleSlot.ServiceId + ";"
-                + scheduleSlot.AnimalId + ";"
-                + scheduleSlot.VeterinaryId + ";"
+            string relativePath = filePath + @"Resources\Registry\";
+            string text = "";
+
+            foreach (ScheduleSlot scheduleSlot in scheduleSlots )
+            {
+                text = Convert.ToString(scheduleSlot.Id) + ";"
+                + Convert.ToString(scheduleSlot.ServiceId) + ";"
+                + Convert.ToString(scheduleSlot.AnimalId) + ";"
+                + Convert.ToString(scheduleSlot.VeterinaryId) + ";"
                 + scheduleSlot.Dia + ";"
                 + scheduleSlot.HoraInicio + ";"
                 + scheduleSlot.HoraFim + ";\n";
+            }
 
-            string fileName = +scheduleSlot.Id + "_scheduleSlot.txt";
+            
+            string dia = scheduleSlots[0].Dia;
+            string fileName = dia + "_scheduleSlot.txt";
 
-            File.WriteAllText(fileName, line);
+            File.WriteAllText(fileName, text);
             Console.WriteLine("Foi criado o ficheiro " + fileName + " na pasta " + filePath);
         }
     }

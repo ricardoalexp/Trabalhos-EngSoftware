@@ -19,11 +19,22 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.Address = address;
             this.Contact = contact;
         }
+
         public Owner(string name, string address, long contact)
         {
             this.Name = name;
             this.Address = address;
             this.Contact = contact;
+        }
+
+        
+        public List<Animal> getAnimals(List<Animal> animals)
+        {
+            List<Animal> ownerAnimals = new List<Animal>();
+            foreach(Animal animal in animals){
+                if (animal.OwnerId.Equals(this.Id)) { ownerAnimals.Add(animal); }
+            }
+            return ownerAnimals;
         }
 
         public bool Equals(Owner owner)
@@ -35,6 +46,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
             return resultado;
         }
+
         public override string ToString()
         {
             string text = "Id: " + this.Id + "\n";
