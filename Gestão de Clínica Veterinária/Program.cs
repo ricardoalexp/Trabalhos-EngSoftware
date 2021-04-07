@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using Gestão_de_Clínica_Veterinária.Classes;
+
 namespace Gestão_de_Clínica_Veterinária
 {
 	class Program
@@ -37,15 +38,12 @@ namespace Gestão_de_Clínica_Veterinária
         }
 
 
+        #region Funções auxiliares
+        
+		#region Menu
 
-		//-----------------Funções auxilares-----------------
-
-		//-----------------Menu-----------------
-
-		/// <summary>
-		/// Representação Visual do Menu principal
-		/// </summary>
-		static void MainMenu()
+        
+        static void MainMenu()
 		{
 			bool leave = false;
 			int option;
@@ -85,9 +83,7 @@ namespace Gestão_de_Clínica_Veterinária
 			} while (!leave);
 		}
 
-		/// <summary>
-		/// Representação Visual do Menu do Cliente
-		/// </summary>
+		
 		static void ClientMenu()
 		{
 			bool leave = false;
@@ -131,10 +127,7 @@ namespace Gestão_de_Clínica_Veterinária
 			} while (!leave);
 
 		}
-
-		/// <summary>
-		/// Representação Visual do Menu dos Serviços
-		/// </summary>
+				
 		static void ServiceMenu()
 		{
 			bool leave = false;
@@ -142,7 +135,7 @@ namespace Gestão_de_Clínica_Veterinária
 
 			do
 			{
-				Console.WriteLine("Serviços:\n");
+				Console.WriteLine("\nServiços:\n");
 				Console.WriteLine("1 - Listar Serviços"); 
 				Console.WriteLine("2 - Listar Profissionais");
 				Console.WriteLine("3 - Listar Marcações do Dia"); // falta implementar
@@ -180,11 +173,7 @@ namespace Gestão_de_Clínica_Veterinária
 				}
 			} while (!leave);
 
-		}
-
-		/// <summary>
-		/// Representação Visual do Menu do Administrador
-		/// </summary>
+		}		
 		static void AdminMenu()
 		{
 			bool leave = false;
@@ -219,13 +208,12 @@ namespace Gestão_de_Clínica_Veterinária
 				}
 			} while (!leave);
 		}
+        #endregion
 
-		//-----------------Find-----------------
+        #region Find
+		        
+        static Owner FindOwnerById(int id)
 
-		/// <summary>
-		/// Devolve o Objeto da classe "Owner" que tem o id introduzido
-		/// </summary>
-		static Owner FindOwnerById(int id)
 		{
 			Owner owner;
 
@@ -238,10 +226,7 @@ namespace Gestão_de_Clínica_Veterinária
 			return null;
 
 		}
-
-		/// <summary>
-		/// Devolve o Objeto da classe "Animal" que tem o id introduzido
-		/// </summary>
+			
 		static Animal FindAnimalById(int id)
 		{
 			foreach(Animal animal in Animals)
@@ -251,9 +236,6 @@ namespace Gestão_de_Clínica_Veterinária
 			return null;			
 		}
 
-		/// <summary>
-		/// Devolve o Objeto da classe "Service" que tem o id introduzido
-		/// </summary>
 		static Service FindServiceById(int id)
         {
 			foreach (Service service in Services)
@@ -262,10 +244,7 @@ namespace Gestão_de_Clínica_Veterinária
 			}
 			return null;
 		}
-
-		/// <summary>
-		/// Devolve o Objeto da classe "Veterinary" que tem o id introduzido
-		/// </summary>
+				
 		static Veterinary FindVeterinaryById(int id)
 		{
 			foreach (Veterinary veterinary in Veterinaries)
@@ -274,16 +253,15 @@ namespace Gestão_de_Clínica_Veterinária
 			}
 			return null;
 		}
+        #endregion
 
-		//-----------------Create-----------------
+        #region Create
+        
+        static void CreateAppointment() //Falta acabar!!!
 
-		/// <summary>
-		/// Falta descrição!!!
-		/// </summary>
-		static void CreateAppointment() //Falta acabar!!!
         {
 			bool leaveInputState = false;
-			bool idFound = false;
+			bool inputValidated = false;
 			string input = "";
 			int idInput = 0;
 			Owner person;
@@ -291,7 +269,7 @@ namespace Gestão_de_Clínica_Veterinária
 			Console.WriteLine("\nFazer marcação: ");
 			Console.WriteLine("\nIntroduza o ID do cliente: ");
 
-			while (!idFound && !leaveInputState)
+			while (!inputValidated && !leaveInputState)
 			{
 				Console.WriteLine("Por favor insira o seu número de cliente:");
 				Console.WriteLine(@"(Ou insira 'LEAVE' para voltar ao menu");
@@ -316,7 +294,7 @@ namespace Gestão_de_Clínica_Veterinária
 								{
 									Console.WriteLine(" " + animal.Id + " - " + animal.Name);
 								}
-								idFound = true;
+								inputValidated = true;
 							}
 							else { Console.WriteLine("O Cliente selecionado não tem nenhum animal registado."); }
 						}
@@ -327,9 +305,9 @@ namespace Gestão_de_Clínica_Veterinária
 			
 			if (!leaveInputState)
             {
-				idFound = false;
+				inputValidated = false;
 				Animal animal;
-				while (!idFound && !leaveInputState)
+				while (!inputValidated && !leaveInputState)
 				{
 					Console.WriteLine("Por favor insira o ID do animal a usar:");
 					Console.WriteLine(@"(Ou insira 'LEAVE' para voltar ao menu");
@@ -342,7 +320,7 @@ namespace Gestão_de_Clínica_Veterinária
 						{
 							animal = FindAnimalById(idInput);
 							if (animal == null) { Console.WriteLine("Id de animal não encontrado. Por favor tente novamente."); }
-							else { idFound = true; }
+							else { inputValidated = true; }
 						}
 						else { Console.WriteLine("Input inválido. Por favor tente novamente."); }
 					}
@@ -352,11 +330,11 @@ namespace Gestão_de_Clínica_Veterinária
 			int serviceDuration = 0;
 			if (!leaveInputState)
 			{
-				idFound = false;
+				inputValidated = false;
 				ListServicesShort();
 				Service service;
 				
-				while (!idFound && !leaveInputState)
+				while (!inputValidated && !leaveInputState)
 				{
 					Console.WriteLine("Por favor insira o ID do serviço a agendar:");
 					Console.WriteLine(@"(Ou insira 'LEAVE' para voltar ao menu");
@@ -369,7 +347,7 @@ namespace Gestão_de_Clínica_Veterinária
 						{
 							service = FindServiceById(idInput);
 							if (service == null) { Console.WriteLine("Id de serviço não encontrado. Por favor tente novamente."); }
-							else { idFound = true; serviceDuration = service.Duration; }
+							else { inputValidated = true; serviceDuration = service.Duration; }
 						}
 						else { Console.WriteLine("Input inválido. Por favor tente novamente."); }
 					}
@@ -379,7 +357,7 @@ namespace Gestão_de_Clínica_Veterinária
 			bool validDate = false;
             if (!leaveInputState)
             {
-				idFound = false;
+				inputValidated = false;
 				while (!validDate && !leaveInputState)
 				{
 					Console.WriteLine("Por favor insira a data a agendar:");
@@ -399,18 +377,51 @@ namespace Gestão_de_Clínica_Veterinária
 			if (!leaveInputState) {
 				date = CustomDateTime.FormatDate(input);
 				Console.WriteLine("Data inserida: " + date);
-				while (!idFound && !leaveInputState)
+				while (!inputValidated && !leaveInputState)
 				{
 					Console.WriteLine("Por favor insira a hora a agendar:");
 					Console.WriteLine(@"(Ou insira 'LEAVE' para voltar ao menu");
-					Console.WriteLine("Note que o serviço escolhido tem a seguinte duração: " + CustomDateTime.MinutesDurationFormat(serviceDuration));
+					Console.WriteLine("Note que o serviço escolhido tem a seguinte duração: " + CustomDateTime.MinutesDurationFormat(serviceDuration) + "\n");
 
 					input = Console.ReadLine();
 					if (input.Equals("LEAVE")) { leaveInputState = true; }
 					else
 					{
-						if (CustomDateTime.CheckDateTimeFormat(input)) { timeInput = input; }
-						else { Console.WriteLine("Input inválido. Por favor tente novamente."); }
+						if (CustomDateTime.CheckDateTimeFormat(input)) { timeInput = input; inputValidated = true; }
+						else { Console.WriteLine("Input inválido. Por favor tente novamente.\n"); }
+					}
+				}
+			}
+
+			int vetId = 0;
+
+            if (!leaveInputState)
+            {
+				inputValidated = false;
+				List<ScheduleSlot> schedule = registryReader.ReadScheduleSlot(date);
+
+				Service serv = FindServiceById(serviceId);
+				List<int> vetIdList = new List<int>();
+                foreach (Veterinary vet in Veterinaries)
+                {
+					if(vet.CheckAvailability(schedule, CustomDateTime.IntegerTimeFormat(timeInput), CustomDateTime.IntegerTimeFormat(CustomDateTime.GetAppointmentEndTime(timeInput,serv.Duration))))
+                    {
+						vetIdList.Add(vet.Id);
+						Console.WriteLine(vet.Id + " - "  + vet.Name);
+                    }
+                }
+
+				while (!inputValidated && !leaveInputState)
+				{
+					Console.WriteLine("Por favor insira o id do profissional:");
+					Console.WriteLine(@"(Ou insira 'LEAVE' para voltar ao menu");
+
+					input = Console.ReadLine();
+					if (input.Equals("LEAVE")) { leaveInputState = true; }
+					else
+					{
+						if (vetIdList.Contains(int.Parse(input))) { vetId = int.Parse(input); inputValidated = true; }
+						else { Console.WriteLine("Input inválido. Por favor tente novamente.\n"); }
 					}
 				}
 			}
@@ -486,14 +497,11 @@ namespace Gestão_de_Clínica_Veterinária
 				else { Animals.Add(animal); }
 			}
 		}
+        #endregion
 
-		/// <summary>
-		/// Mostra a lista dos clientes em memória
-		/// </summary>
 
-		//-----------------Lists-----------------
-
-		static void ListClients()
+        #region Lists        
+        static void ListClients()
 		{
 			Console.WriteLine("Clientes Registados no Sistema:\n");
 			foreach (Owner persona in Owners)
@@ -501,9 +509,7 @@ namespace Gestão_de_Clínica_Veterinária
 				Console.WriteLine(persona.ToString());
 			}
 		}
-		/// <summary>
-		/// Mostra a lista dos animais de um owner em memória introduzido pelo user
-		/// </summary>
+		
 		static void ListOwnerAnimals()
 		{
 			bool leaveInputState = false;
@@ -544,10 +550,7 @@ namespace Gestão_de_Clínica_Veterinária
 				}
 			}
 		}
-
-		/// <summary>
-		/// Mostra a lista dos serviços em memória
-		/// </summary>
+		
 		static void ListServices()
 		{
 			if (Services.Count != 0)
@@ -562,10 +565,7 @@ namespace Gestão_de_Clínica_Veterinária
 				Console.WriteLine("Não existem serviços no sistema");
 			}
 		}
-
-		/// <summary>
-		/// Mostra a versão simplificada da lista dos serviços em memória
-		/// </summary>
+				
 		static void ListServicesShort()
 		{
 			Console.WriteLine("");
@@ -582,10 +582,7 @@ namespace Gestão_de_Clínica_Veterinária
 				Console.WriteLine("Não existem serviços no sistema");
 			}
 		}
-
-		/// <summary>
-		/// Mostra a lista dos veterinários em memória
-		/// </summary>
+				
 		static void ListVeterinaries()
 		{
 			if (Veterinaries.Count != 0)
@@ -600,17 +597,13 @@ namespace Gestão_de_Clínica_Veterinária
 				Console.WriteLine("Não existem Veterinários no sistema");
 			}
 		}
+        #endregion
 
-		/// <summary>
-		/// Pede ao utilizador os dados de um serviço e guarda o mesmo em memória e em ficheiro
-		/// </summary>
-
-		//-----------------Register-----------------
-
-		/// <summary>
-		/// Pede ao utilizador os dados de um serviço e guarda o mesmo em memória e em ficheiro
-		/// </summary>
-		static void RegisterService()
+        #region Register
+        /// <summary>
+        /// Pede ao utilizador os dados de um serviço e guarda o mesmo em memória e em ficheiro
+        /// </summary>
+        static void RegisterService()
 		{
 			Console.WriteLine("Novo Serviço:\n");
 			Console.WriteLine("Introduza o Nome do Serviço:\n");
@@ -658,5 +651,10 @@ namespace Gestão_de_Clínica_Veterinária
           Veterinary newVeterinary = new Veterinary(nameVeterinary);
           registryWriter.WriteToFile(newVeterinary);
         }
+
+		#endregion
+
+	#endregion
+
 	}
 }

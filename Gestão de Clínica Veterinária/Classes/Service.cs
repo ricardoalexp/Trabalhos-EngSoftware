@@ -29,14 +29,10 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.Duration = duration;
         }
 
-        /// <summary>
-        /// Versão simplificada do ToString
-        /// </summary>
-        /// <returns></returns>
+        
         public String ToShortString()
         {
             string text = this.Id + " - " + this.Name;
-
             return text;
         }
 
@@ -60,7 +56,6 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             {
                 text += "   " + this.Medicine[i] + "\n";
             }
-
             return text;
         }
     }
