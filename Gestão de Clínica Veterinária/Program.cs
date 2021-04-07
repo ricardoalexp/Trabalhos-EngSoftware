@@ -127,8 +127,7 @@ namespace Gestão_de_Clínica_Veterinária
 			} while (!leave);
 
 		}
-
-		
+				
 		static void ServiceMenu()
 		{
 			bool leave = false;
@@ -174,9 +173,7 @@ namespace Gestão_de_Clínica_Veterinária
 				}
 			} while (!leave);
 
-		}
-
-		
+		}		
 		static void AdminMenu()
 		{
 			bool leave = false;
@@ -214,9 +211,7 @@ namespace Gestão_de_Clínica_Veterinária
         #endregion
 
         #region Find
-
-
-        
+		        
         static Owner FindOwnerById(int id)
 
 		{
@@ -231,8 +226,7 @@ namespace Gestão_de_Clínica_Veterinária
 			return null;
 
 		}
-
-		
+			
 		static Animal FindAnimalById(int id)
 		{
 			foreach(Animal animal in Animals)
@@ -250,8 +244,7 @@ namespace Gestão_de_Clínica_Veterinária
 			}
 			return null;
 		}
-
-		
+				
 		static Veterinary FindVeterinaryById(int id)
 		{
 			foreach (Veterinary veterinary in Veterinaries)
@@ -261,7 +254,6 @@ namespace Gestão_de_Clínica_Veterinária
 			return null;
 		}
         #endregion
-
 
         #region Create
         
@@ -507,8 +499,8 @@ namespace Gestão_de_Clínica_Veterinária
 		}
         #endregion
 
-        #region Lists
-        
+
+        #region Lists        
         static void ListClients()
 		{
 			Console.WriteLine("Clientes Registados no Sistema:\n");
@@ -573,8 +565,7 @@ namespace Gestão_de_Clínica_Veterinária
 				Console.WriteLine("Não existem serviços no sistema");
 			}
 		}
-
-		
+				
 		static void ListServicesShort()
 		{
 			Console.WriteLine("");
@@ -591,8 +582,7 @@ namespace Gestão_de_Clínica_Veterinária
 				Console.WriteLine("Não existem serviços no sistema");
 			}
 		}
-
-		
+				
 		static void ListVeterinaries()
 		{
 			if (Veterinaries.Count != 0)
@@ -609,10 +599,7 @@ namespace Gestão_de_Clínica_Veterinária
 		}
         #endregion
 
-
         #region Register
-
-
         /// <summary>
         /// Pede ao utilizador os dados de um serviço e guarda o mesmo em memória e em ficheiro
         /// </summary>
@@ -667,7 +654,7 @@ namespace Gestão_de_Clínica_Veterinária
 
 		#endregion
 
-		#endregion
+	#endregion
 
 	}
 }

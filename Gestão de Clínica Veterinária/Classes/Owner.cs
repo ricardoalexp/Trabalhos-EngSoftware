@@ -26,12 +26,12 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.Address = address;
             this.Contact = contact;
         }
-
-        
+                
         public List<Animal> getAnimals(List<Animal> animals)
         {
             List<Animal> ownerAnimals = new List<Animal>();
-            foreach(Animal animal in animals){
+            foreach(Animal animal in animals)
+            {
                 if (animal.OwnerId.Equals(this.Id)) { ownerAnimals.Add(animal); }
             }
             return ownerAnimals;

@@ -53,7 +53,6 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         public override String ToString()
         {
             string text = "Id: " + this.Id + "\n" + "Nome: " + this.Name;
-
             return text;
         }
     }

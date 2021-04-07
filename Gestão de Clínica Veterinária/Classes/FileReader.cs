@@ -5,8 +5,7 @@ using System.Collections.Generic;
 namespace Gestão_de_Clínica_Veterinária.Classes
 {
     class FileReader
-    {
-        
+    {        
         public List<Veterinary> ReadVeterinary()
         {
             string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Veterinaries");
@@ -27,8 +26,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             }
             return vetList;
         }
-
-        
+                
         public List<Owner> ReadOwner()
         {
             string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Clients");
@@ -49,8 +47,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             }
             return ownerList;
         }
-
-        
+                
         public List<Animal> ReadAnimal()
         {
             string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Animals");
@@ -71,8 +68,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             }
             return animalList;
         }
-
-        
+                
         public List<Service> ReadService()
         {
             string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Services");
@@ -104,8 +100,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             }
             return serviceList;
         }
-
-        
+                
         public List<ScheduleSlot> ReadScheduleSlot(string date)
         {
             string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Registry");
@@ -126,14 +121,10 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                         scheduleSlotList.Add(scheduleSlot);
 
                         //Console.WriteLine(scheduleSlot.ToString());
-                    }
-               
+                    }               
                 }
-
             }
-
             return scheduleSlotList;
         }
-
     }
 }

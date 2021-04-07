@@ -13,8 +13,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
             this.filePath = Path.GetFullPath(@"..\..\..\");            
         }
-
-        
+                
         public int WriteToFile(Owner owner)
         {
             int id;
@@ -47,8 +46,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
             return id;
         }
-
-        
+                
         public int WriteToFile(Animal animal)
         {
             int id;
@@ -87,8 +85,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
             return id;
         }
-
-        
+                
         public int WriteToFile(Veterinary veterinary)
         {
             int id;
@@ -117,11 +114,9 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                 Console.WriteLine(e.ToString());
                 id = 0;
             }
-
             return id;
         }
-
-        
+                
         public int WriteToFile(Service service)
         {            
             int id;
@@ -161,8 +156,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
             return id;
         }
-
-        
+                
         public void WriteToFile(List <ScheduleSlot> scheduleSlots) //Falta corrigir!!!
         {
             string relativePath = filePath + @"Resources\Registry\";
@@ -178,8 +172,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                 + scheduleSlot.HoraInicio + ";"
                 + scheduleSlot.HoraFim + ";\n";
             }
-
-            
+                        
             string dia = scheduleSlots[0].Dia;
             string fileName = dia + "_scheduleSlot.txt";
 
