@@ -33,15 +33,24 @@ namespace Gestão_de_Clínica_Veterinária
             Services = registryReader.ReadService();
 
             DaySchedule = new List<ScheduleSlot>(); //Falta Corrigir 
+
+			Console.WriteLine(CustomDateTime.GetAppointmentEndTime("9:00", 125));
+			Console.WriteLine(CustomDateTime.GetAppointmentEndTime("9:40", 125));
+			Console.WriteLine(CustomDateTime.GetAppointmentEndTime("00:30", 635));
+			Console.WriteLine(CustomDateTime.GetAppointmentEndTime("9:30", 125));
+
 			Console.WriteLine(CustomDateTime.CurrentTime() + "  " + CustomDateTime.CurrentDate());
             MainMenu();
-        }
 
+			
+
+		}
+
+		
 
         #region Funções auxiliares
         
 		#region Menu
-
         
         static void MainMenu()
 		{
@@ -82,7 +91,6 @@ namespace Gestão_de_Clínica_Veterinária
 				}
 			} while (!leave);
 		}
-
 		
 		static void ClientMenu()
 		{
@@ -174,6 +182,7 @@ namespace Gestão_de_Clínica_Veterinária
 			} while (!leave);
 
 		}		
+
 		static void AdminMenu()
 		{
 			bool leave = false;
@@ -402,9 +411,11 @@ namespace Gestão_de_Clínica_Veterinária
 
 				Service serv = FindServiceById(serviceId);
 				List<int> vetIdList = new List<int>();
-                foreach (Veterinary vet in Veterinaries)
+				int horainicio = CustomDateTime.IntegerTimeFormat(timeInput);
+				int horafim = CustomDateTime.IntegerTimeFormat(CustomDateTime.GetAppointmentEndTime(timeInput, serv.Duration));
+				foreach (Veterinary vet in Veterinaries)
                 {
-					if(vet.CheckAvailability(schedule, CustomDateTime.IntegerTimeFormat(timeInput), CustomDateTime.IntegerTimeFormat(CustomDateTime.GetAppointmentEndTime(timeInput,serv.Duration))))
+					if(vet.CheckAvailability(schedule, horainicio, horafim))
                     {
 						vetIdList.Add(vet.Id);
 						Console.WriteLine(vet.Id + " - "  + vet.Name);
@@ -424,6 +435,26 @@ namespace Gestão_de_Clínica_Veterinária
 						else { Console.WriteLine("Input inválido. Por favor tente novamente.\n"); }
 					}
 				}
+
+				Console.WriteLine("Os dados introduzidos foram os seguintes:\n");
+				Animal animal = FindAnimalById(animalId);
+				Veterinary veterinary = FindVeterinaryById(vetId);
+
+				string horas = CustomDateTime.StringTimeFormat(horainicio) + " - " +  CustomDateTime.StringTimeFormat(horafim); 
+
+				Console.WriteLine("Dia: " + date + "\nHora: " + horas + "\n");
+				Console.WriteLine("Animal: " + animal.Id + " - " + animal.Name);
+				Console.WriteLine("Serviço: " + serv.ToShortString());
+				Console.WriteLine("Veterinário: " + veterinary.Id + " - " + veterinary.Name + "\n");
+
+				ScheduleSlot slot = new ScheduleSlot(serviceId, animalId, vetId, date, horainicio, horafim);
+
+				
+				if (!registryWriter.WriteToFile(slot)) { Console.WriteLine("Ocorreu um erro. Por favor tente novamente."); }
+				else { DaySchedule.Add(slot); }
+
+
+
 			}
 		}
 
@@ -498,7 +529,6 @@ namespace Gestão_de_Clínica_Veterinária
 			}
 		}
         #endregion
-
 
         #region Lists        
         static void ListClients()

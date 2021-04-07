@@ -32,8 +32,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                 id = i;
                 string line = Convert.ToString(id) + ";"
                 + owner.Name + ";" + owner.Address + ";"
-                + owner.Contact + ";\n";
-                
+                + owner.Contact + ";\n";                
 
                 File.WriteAllText(fileName, line);
                 Console.WriteLine(line);
@@ -156,28 +155,34 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
             return id;
         }
-                
-        public void WriteToFile(List <ScheduleSlot> scheduleSlots) //Falta corrigir!!!
+
+        public bool WriteToFile(ScheduleSlot slot)
         {
-            string relativePath = filePath + @"Resources\Registry\";
+            string relativePath = filePath + @"Resources\Registry";
+            string fileName;
             string text = "";
-
-            foreach (ScheduleSlot scheduleSlot in scheduleSlots )
+            bool success;
+            try
             {
-                text = Convert.ToString(scheduleSlot.Id) + ";"
-                + Convert.ToString(scheduleSlot.ServiceId) + ";"
-                + Convert.ToString(scheduleSlot.AnimalId) + ";"
-                + Convert.ToString(scheduleSlot.VeterinaryId) + ";"
-                + scheduleSlot.Dia + ";"
-                + scheduleSlot.HoraInicio + ";"
-                + scheduleSlot.HoraFim + ";\n";
-            }
-                        
-            string dia = scheduleSlots[0].Dia;
-            string fileName = dia + "_scheduleSlot.txt";
+                fileName = relativePath + slot.Dia + "_service.txt";
 
-            File.WriteAllText(fileName, text);
-            Console.WriteLine("Foi criado o ficheiro " + fileName + " na pasta " + filePath);
+                text = Convert.ToString(slot.ServiceId) + ";"
+                + Convert.ToString(slot.AnimalId) + ";"
+                + Convert.ToString(slot.VeterinaryId) + ";"
+                + slot.Dia + ";"
+                + slot.HoraInicio + ";"
+                + slot.HoraFim + ";\n";
+                File.WriteAllText(fileName, text);
+                Console.WriteLine(text);
+                success = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                success = false;
+            }
+
+            return success;
         }
     }
 }

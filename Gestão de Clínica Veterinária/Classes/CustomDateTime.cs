@@ -65,17 +65,23 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
         public static string GetAppointmentEndTime(string inicio, int duracao)
         {
-            DateTime duration = DateTime.Parse(MinutesDurationFormat(duracao));
-            DateTime start = DateTime.Parse(inicio);
-            start.AddMinutes(duration.Minute);
-            start.AddHours(duration.Hour);
+            int init = IntegerTimeFormat(inicio);
 
-            return start.ToString("HH:mm");
+            init += (duracao / 60) * 100 + (duracao % 60);
+
+            int minutes = init % 100;
+
+            if(minutes >= 60) { init += 40; }
+
+            return StringTimeFormat(init);
         }
 
         public static string StringTimeFormat(int time)
         {
-            DateTime stringTime = DateTime.Parse(Convert.ToString(time));
+            string hora = Convert.ToString(time);
+            string horaEditada = hora[0].ToString() +  hora[1].ToString() + ":" + hora[2].ToString() + hora[3].ToString();
+
+            DateTime stringTime = DateTime.Parse(horaEditada);
             return stringTime.ToString("HH:mm");
         }
 
