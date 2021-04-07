@@ -158,21 +158,24 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
         public bool WriteToFile(ScheduleSlot slot)
         {
-            string relativePath = filePath + @"Resources\Registry";
+            string relativePath = filePath + @"Resources\Registry\";
             string fileName;
             string text = "";
             bool success;
             try
             {
-                fileName = relativePath + slot.Dia + "_service.txt";
+                fileName = relativePath + slot.Dia + ".txt";
 
                 text = Convert.ToString(slot.ServiceId) + ";"
                 + Convert.ToString(slot.AnimalId) + ";"
                 + Convert.ToString(slot.VeterinaryId) + ";"
                 + slot.Dia + ";"
                 + slot.HoraInicio + ";"
-                + slot.HoraFim + ";\n";
-                File.WriteAllText(fileName, text);
+                + slot.HoraFim + ";";
+                using (StreamWriter sw = File.AppendText(fileName))
+                {
+                    sw.WriteLine(text);
+                }
                 Console.WriteLine(text);
                 success = true;
             }
