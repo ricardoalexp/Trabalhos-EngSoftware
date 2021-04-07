@@ -6,10 +6,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 {
     class FileReader
     {
-        /// <summary>
-        /// Lê os ficheiros do veterinários e retorna uma lista dos mesmos 
-        /// </summary>
-        /// <returns>Lista de "Veterinary"</returns>
+        
         public List<Veterinary> ReadVeterinary()
         {
             string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Veterinaries");
@@ -31,10 +28,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return vetList;
         }
 
-        /// <summary>
-        /// Lê os ficheiros dos "Veterinary" e retorna uma lista dos mesmos 
-        /// </summary>
-        /// <returns>Lista de "Veterinary"</returns>
+        
         public List<Owner> ReadOwner()
         {
             string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Clients");
@@ -56,10 +50,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return ownerList;
         }
 
-        /// <summary>
-        /// Lê os ficheiros dos "Owner" e retorna uma lista dos mesmos 
-        /// </summary>
-        /// <returns>Lista de "Owner"</returns>
+        
         public List<Animal> ReadAnimal()
         {
             string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Animals");
@@ -81,10 +72,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return animalList;
         }
 
-        /// <summary>
-        /// Lê os ficheiros dos "Animal" e retorna uma lista dos mesmos 
-        /// </summary>
-        /// <returns>Lista de "Animal"</returns>
+        
         public List<Service> ReadService()
         {
             string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Services");
@@ -117,10 +105,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             return serviceList;
         }
 
-        /// <summary>
-        /// Lê os ficheiros dos "ScheduleSlot" e retorna uma lista dos mesmos 
-        /// </summary>
-        /// <returns>Lista de "ScheduleSlot"</returns>
+        
         public List<ScheduleSlot> ReadScheduleSlot(string date)
         {
             string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Registry");

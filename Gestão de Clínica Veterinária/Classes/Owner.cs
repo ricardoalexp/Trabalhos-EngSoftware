@@ -27,11 +27,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.Contact = contact;
         }
 
-        /// <summary>
-        /// Recebe uma lista de animais e retorna a lista dos animais que pertencem ao owner que invocou este método
-        /// </summary>
-        /// <param name="animals"></param>
-        /// <returns></returns>
+        
         public List<Animal> getAnimals(List<Animal> animals)
         {
             List<Animal> ownerAnimals = new List<Animal>();
