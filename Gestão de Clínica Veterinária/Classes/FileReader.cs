@@ -113,7 +113,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
 
             foreach (string file in dirs)
             {
-                if (Path.GetFileName(file) == date + ".txt")
+                if (Path.GetFileName(file).Equals(date + ".txt"))
                 {
                     string[] lines = File.ReadAllLines(file);
 
