@@ -19,6 +19,7 @@ namespace Gestão_de_Clínica_Veterinária
 		static List<Veterinary> Veterinaries;
 		static List<Service> Services;
 		static List<ScheduleSlot> DaySchedule;
+		static string CurrentDate;
 
 		static void Main(string[] args)
 		{
@@ -31,12 +32,12 @@ namespace Gestão_de_Clínica_Veterinária
             Animals = registryReader.ReadAnimal();
             Veterinaries = registryReader.ReadVeterinary();
             Services = registryReader.ReadService();
-            DaySchedule = new List<ScheduleSlot>();
+			CurrentDate = CustomDateTime.CurrentDate();
+			DaySchedule = registryReader.ReadScheduleSlot(CurrentDate);
 
 			Console.WriteLine(CustomDateTime.CurrentTime() + "  " + CustomDateTime.CurrentDate());
-            MainMenu();
 
-			
+            MainMenu();
 
 		}
 
@@ -54,8 +55,7 @@ namespace Gestão_de_Clínica_Veterinária
 			Console.WriteLine("Bem vindo ao software de Gestão da Clínica.");
 			do
 			{
-				
-				Console.WriteLine("Escolha uma das opções:\n");
+				Console.WriteLine("\nEscolha uma das opções:\n");
 				Console.WriteLine("1 - Área de Cliente");
 				Console.WriteLine("2 - Serviços");
 				Console.WriteLine("3 - Área de Administrador");
@@ -92,13 +92,12 @@ namespace Gestão_de_Clínica_Veterinária
 			int option;
 			do
 			{
-				Console.WriteLine("Área de cliente:\n");
+				Console.WriteLine("\nÁrea de cliente:\n");
 				Console.WriteLine("1 - Registar Cliente");
 				Console.WriteLine("2 - Registar Animal");
 				Console.WriteLine("3 - Listar Clientes");
 				Console.WriteLine("4 - Listar Animais de um Cliente");
 				Console.WriteLine("5 - Relatório de Cliente"); // falta implementar
-				Console.WriteLine("6 - Relatório de Animal"); // falta implementar
 				Console.WriteLine("0 - Voltar Atrás");
 
 				if (!int.TryParse(Console.ReadLine(), out option)) { Console.WriteLine("Input inválido. Tente novamente."); }
@@ -117,6 +116,9 @@ namespace Gestão_de_Clínica_Veterinária
 							break;
 						case 4:
 							ListOwnerAnimals();
+							break;
+						case 5:
+							DisplayOwnerReport();
 							break;
 						case 0:
 							leave = true;
@@ -157,6 +159,9 @@ namespace Gestão_de_Clínica_Veterinária
 						case 2:
 							Console.WriteLine("Escolheu Opção 2\n");
 							ListVeterinaries();
+							break;
+						case 3:
+							ListCurrentDaySchedule();
 							break;
 						case 4:
 							CreateAppointment();
@@ -461,7 +466,7 @@ namespace Gestão_de_Clínica_Veterinária
 					ScheduleSlot slot = new ScheduleSlot(serviceId, animalId, vetId, date, horainicio, horafim);
 
 					if (!registryWriter.WriteToFile(slot)) { Console.WriteLine("Ocorreu um erro. Por favor tente novamente."); }
-					else { DaySchedule.Add(slot); }
+					else { if (slot.Dia.Equals(CurrentDate)){ DaySchedule.Add(slot); }	}
 				}
                 #endregion
             }
@@ -636,13 +641,101 @@ namespace Gestão_de_Clínica_Veterinária
 				Console.WriteLine("Não existem Veterinários no sistema");
 			}
 		}
-        #endregion
+		static void ListCurrentDaySchedule()
+        {
+			Service serviceAuxiliar;
+			Veterinary vetAuxiliar;
+			Animal animalAuxiliar;
+			if (DaySchedule.Count.Equals(0)) { Console.WriteLine("Não há marcações agendadas para o dia atual."); }
+			else
+			{
+				Console.WriteLine("\n //-----------------// " + CurrentDate + " //-----------------//\n");
+				foreach (ScheduleSlot slot in DaySchedule)
+				{
+					serviceAuxiliar = FindServiceById(slot.ServiceId);
+					vetAuxiliar = FindVeterinaryById(slot.VeterinaryId);
+					animalAuxiliar = FindAnimalById(slot.AnimalId);
+					string horaInicio = CustomDateTime.StringTimeFormat(slot.HoraInicio);
+					string horaFim = CustomDateTime.StringTimeFormat(slot.HoraFim);
 
-        #region Register
-        /// <summary>
-        /// Pede ao utilizador os dados de um serviço e guarda o mesmo em memória e em ficheiro
-        /// </summary>
-        static void RegisterService()
+					Console.WriteLine(horaInicio + " - " + horaFim + " >> O animal " + animalAuxiliar.Name + " tem agendado " + serviceAuxiliar.Name + " com o vet. " + vetAuxiliar.Name + ".");
+				}
+			}
+		}
+		static void DisplayOwnerReport()
+		{
+			bool leaveInputState = false;
+			bool idFound = false;
+			string input;
+			int idInput = 0;
+			Owner person;
+			List<int> ownerAnimalIds = new List<int>();
+			List<Animal> ownerAnimals = new List<Animal>();
+			List<ScheduleSlot> ownerAppointmentList = new List<ScheduleSlot>();
+			while (!idFound && !leaveInputState)
+			{
+				Console.WriteLine("Por favor insira o seu número de cliente:");
+				Console.WriteLine(@"(Ou insira 'LEAVE' para voltar ao menu");
+
+				input = Console.ReadLine();
+				if (input.Equals("LEAVE")) { leaveInputState = true; }
+				else
+				{
+					if (int.TryParse(input, out idInput))
+					{
+						person = FindOwnerById(idInput);
+						if (person == null) { Console.WriteLine("Id de cliente não encontrado. Por favor tente novamente."); }
+						else
+						{
+							ownerAnimals = person.getAnimals(Animals);
+							foreach (Animal bicho in ownerAnimals) { ownerAnimalIds.Add(bicho.Id); }
+
+							ownerAppointmentList = registryReader.GetSortedOwnerAppointments(ownerAnimalIds);
+							idFound = true;
+						}
+					}
+					else { Console.WriteLine("Input inválido. Por favor tente novamente."); }
+				}
+			}
+
+			if (!leaveInputState)
+			{
+				person = FindOwnerById(idInput);
+				Console.WriteLine("Relatório de Cliente:\n");
+				Console.WriteLine(person.ToString());
+				Console.WriteLine("Animais Registados:\n");
+				foreach (Animal animal in ownerAnimals)
+				{
+					Console.WriteLine(animal.ToString());
+				}
+				string displayDate = "";
+				Service serviceAuxiliar;
+				Veterinary vetAuxiliar;
+				Animal animalAuxiliar;
+				foreach (ScheduleSlot slot in ownerAppointmentList)
+				{
+					serviceAuxiliar = FindServiceById(slot.ServiceId);
+					vetAuxiliar = FindVeterinaryById(slot.VeterinaryId);
+					animalAuxiliar = FindAnimalById(slot.AnimalId);
+					if (!slot.Dia.Equals(displayDate))
+					{
+						displayDate = slot.Dia;
+						Console.WriteLine("\n //-----------------// " + displayDate + " //-----------------//\n");
+					}
+					string horaInicio = CustomDateTime.StringTimeFormat(slot.HoraInicio);
+					string horaFim = CustomDateTime.StringTimeFormat(slot.HoraFim);
+					Console.WriteLine(horaInicio + " - " + horaFim + " >> O animal " + animalAuxiliar.Name + " efetuou " + serviceAuxiliar.Name + " com o vet. " + vetAuxiliar.Name + ".");
+				}
+			}
+		}
+		#endregion
+
+
+		#region Register
+		/// <summary>
+		/// Pede ao utilizador os dados de um serviço e guarda o mesmo em memória e em ficheiro
+		/// </summary>
+		static void RegisterService()
 		{
 			Console.WriteLine("Novo Serviço:\n");
 			Console.WriteLine("Introduza o Nome do Serviço:\n");

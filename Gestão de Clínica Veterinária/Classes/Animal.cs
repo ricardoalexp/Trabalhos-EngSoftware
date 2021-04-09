@@ -48,11 +48,13 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             text += "Id: " + this.Id + "\n";
             text += "Nome: " + this.Name + "\n";
             text += "Género: " + this.Gender + "\n";
-            text += "Espécie: " + this.Category + "\n";
+            text += "Espécie: " + this.Category + " ";
             if (!this.Subcategory.Equals("---"))
             {
-                text += "Subespécie: " + this.Subcategory + "\n";
+                text += "(" + this.Subcategory + ")";
             }
+            text += "\n";
+
             return text;
         }
     }
