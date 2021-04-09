@@ -6,7 +6,7 @@ using Gestão_de_Clínica_Veterinária.Classes;
 
 namespace Gestão_de_Clínica_Veterinária
 {
-	class Program
+	public class Program
 	{
 		//Instâncias de objetos para ler e escrever ficheiros
 		static FileWriter registryWriter = new FileWriter();
@@ -21,7 +21,7 @@ namespace Gestão_de_Clínica_Veterinária
 		static List<ScheduleSlot> DaySchedule;
 		static string CurrentDate;
 
-		static void Main(string[] args)
+		public static void Main(string[] args)
 		{
             CultureInfo culture = (CultureInfo)CultureInfo.CurrentUICulture.Clone();
             culture.NumberFormat.NumberDecimalSeparator = ",";

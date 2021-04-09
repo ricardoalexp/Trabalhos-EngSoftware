@@ -5,7 +5,7 @@ using System.Text;
 namespace Gestão_de_Clínica_Veterinária.Classes
 {
    
-    class CustomDateTime
+    public class CustomDateTime
     {
         private string Date { get; set; }
 
