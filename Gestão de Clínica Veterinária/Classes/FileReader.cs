@@ -126,5 +126,27 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             }
             return scheduleSlotList;
         }
+        public List<ScheduleSlot> GetSortedOwnerAppointments(List<int> ownerAnimalIds)
+        {
+            string[] dirs = Directory.GetFiles(@"..\..\..\Resources\Registry");
+            List<ScheduleSlot> scheduleSlotList = new List<ScheduleSlot>();
+
+            foreach (string file in dirs)
+            {
+                string[] lines = File.ReadAllLines(file);
+                foreach(string fileLine in lines)
+                {
+                    string[] atributes = fileLine.Split(';');
+                    if (ownerAnimalIds.Contains(int.Parse(atributes[1])))
+                    {
+                        ScheduleSlot scheduleSlot = new ScheduleSlot(int.Parse(atributes[0]), int.Parse(atributes[1]), int.Parse(atributes[2]), atributes[3], int.Parse(atributes[4]), int.Parse(atributes[5]));
+
+                        scheduleSlotList.Add(scheduleSlot);
+                    }
+                }
+            }
+            scheduleSlotList.Sort(ScheduleSlot.CompareSlots);
+            return scheduleSlotList;
+        }
     }
 }

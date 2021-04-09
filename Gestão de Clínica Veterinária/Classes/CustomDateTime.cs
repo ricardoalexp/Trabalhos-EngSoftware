@@ -5,7 +5,7 @@ using System.Text;
 namespace Gestão_de_Clínica_Veterinária.Classes
 {
    
-    class CustomDateTime
+    public class CustomDateTime
     {
         private string Date { get; set; }
 
@@ -79,7 +79,27 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         public static string StringTimeFormat(int time)
         {
             string hora = Convert.ToString(time);
-            string horaEditada = hora[0].ToString() +  hora[1].ToString() + ":" + hora[2].ToString() + hora[3].ToString();
+            string horaEditada;
+            if (hora.Length.Equals(3))
+            {
+                horaEditada = "0" + hora[0].ToString() + ":" + hora[1].ToString() + hora[2].ToString();
+            }
+            else if (hora.Length.Equals(2))
+            {
+                horaEditada = "00:" + hora[0].ToString() + hora[1].ToString();
+            }
+            else if (hora.Length.Equals(1))
+            {
+                horaEditada = "00:0" + hora;
+            }
+            else if (hora.Length.Equals(0))
+            {
+                horaEditada = "00:00";
+            }
+            else
+            {
+                horaEditada = hora[0].ToString() + hora[1].ToString() + ":" + hora[2].ToString() + hora[3].ToString();
+            }
 
             DateTime stringTime = DateTime.Parse(horaEditada);
             return stringTime.ToString("HH:mm");

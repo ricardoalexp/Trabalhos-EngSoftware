@@ -26,7 +26,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.Address = address;
             this.Contact = contact;
         }
-                
+        
         public List<Animal> getAnimals(List<Animal> animals)
         {
             List<Animal> ownerAnimals = new List<Animal>();
