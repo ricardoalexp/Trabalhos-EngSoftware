@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Gestão_de_Clínica_Veterinária.Classes
-{
-   
+{   
     public class CustomDateTime
     {
         private string Date { get; set; }
@@ -51,7 +50,6 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         public static string CurrentTime()
         {
             string date = DateTime.UtcNow.ToLocalTime().ToString("HH:mm");
-
             return date;
         }
 
@@ -59,7 +57,6 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         {
             DateTime time = DateTime.Parse("00:00");
             time = time.AddMinutes(minutes);
-
             return time.ToString("HH:mm");
         }
 
