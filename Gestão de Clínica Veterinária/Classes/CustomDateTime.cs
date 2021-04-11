@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Gestão_de_Clínica_Veterinária.Classes
-{
-   
-    class CustomDateTime
+{   
+    public class CustomDateTime
     {
         private string Date { get; set; }
 
@@ -51,7 +50,6 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         public static string CurrentTime()
         {
             string date = DateTime.UtcNow.ToLocalTime().ToString("HH:mm");
-
             return date;
         }
 
@@ -59,7 +57,6 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         {
             DateTime time = DateTime.Parse("00:00");
             time = time.AddMinutes(minutes);
-
             return time.ToString("HH:mm");
         }
 
@@ -79,7 +76,27 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         public static string StringTimeFormat(int time)
         {
             string hora = Convert.ToString(time);
-            string horaEditada = hora[0].ToString() +  hora[1].ToString() + ":" + hora[2].ToString() + hora[3].ToString();
+            string horaEditada;
+            if (hora.Length.Equals(3))
+            {
+                horaEditada = "0" + hora[0].ToString() + ":" + hora[1].ToString() + hora[2].ToString();
+            }
+            else if (hora.Length.Equals(2))
+            {
+                horaEditada = "00:" + hora[0].ToString() + hora[1].ToString();
+            }
+            else if (hora.Length.Equals(1))
+            {
+                horaEditada = "00:0" + hora;
+            }
+            else if (hora.Length.Equals(0))
+            {
+                horaEditada = "00:00";
+            }
+            else
+            {
+                horaEditada = hora[0].ToString() + hora[1].ToString() + ":" + hora[2].ToString() + hora[3].ToString();
+            }
 
             DateTime stringTime = DateTime.Parse(horaEditada);
             return stringTime.ToString("HH:mm");

@@ -22,7 +22,26 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             this.HoraInicio = horaInicio;
             this.HoraFim = horaFim;
         }
-        
+        public static int CompareSlots(ScheduleSlot A, ScheduleSlot B)
+        {
+            string[] firstDate = A.Dia.Split("-");
+            string[] secondDate = B.Dia.Split("-");
+
+            DateTime day1 = new DateTime(int.Parse(firstDate[2]), int.Parse(firstDate[1]), int.Parse(firstDate[0]), A.HoraInicio / 100, A.HoraInicio % 100, 0);
+            DateTime day2 = new DateTime(int.Parse(secondDate[2]), int.Parse(secondDate[1]), int.Parse(secondDate[0]), B.HoraInicio / 100, B.HoraInicio % 100, 0);
+
+            if (day1 <= day2) { return -1; }
+            else { return 1; }
+
+        }
+
+        public string ToShortString()
+        {
+            string text = "aID" + this.AnimalId + " - sID" + this.ServiceId + " - vID" + this.VeterinaryId;
+            text += " - Dia: " + this.Dia + "ini: " + this.HoraInicio + " - fim: " + this.HoraFim;
+
+            return text;
+        }
         public bool Equals(ScheduleSlot scheduleSlot)
         {
             bool resultado = true;
