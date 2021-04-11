@@ -61,10 +61,6 @@ namespace Gestão_de_Clínica_Veterinária.Classes.Tests
             catch{ threwException = true; }
 
             Assert.IsTrue(threwException);
-
-
-
-
         }
 
         [TestMethod()]
@@ -90,7 +86,6 @@ namespace Gestão_de_Clínica_Veterinária.Classes.Tests
 
             Assert.AreEqual(resultValid, expectedValid);
 
-
             var expectedNotValid = "14:30";
             var resultNotValid = CustomDateTime.GetAppointmentEndTime(validInicio, validDuracao);
 
@@ -108,7 +103,6 @@ namespace Gestão_de_Clínica_Veterinária.Classes.Tests
                 Assert.AreEqual(resultValid, expectedvalidTimes[i]);
             }
 
-
             int[] notValidTimes = { 2478,  };
             string[] expectedNotvalidTimes = { "24:78", "03:23", "00:59", "00:09", "00:00" };
             for (int i = 0; i < notValidTimes.Length; i++)
@@ -117,12 +111,6 @@ namespace Gestão_de_Clínica_Veterinária.Classes.Tests
                 try { Assert.AreNotEqual(resultValid, expectedNotvalidTimes[i]); }
                 catch { Assert.Fail();}
             }
-        }
-
-        [TestMethod()]
-        public void IntegerTimeFormatTest()
-        {
-            Assert.Fail();
         }
     }
 }
