@@ -1,2 +1,2 @@
-4;Cobaia;Macho;Rato;;2;
+4;Cobaia;Macho;Rato;---;2;
 

@@ -19,11 +19,10 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     string[] atributes = text.Split(';');
 
                     Veterinary vet = new Veterinary(int.Parse(atributes[0]), atributes[1]);
-                    //Console.WriteLine(vet.ToString());
-
                     vetList.Add(vet);
                 }
             }
+
             return vetList;
         }
                 
@@ -40,11 +39,10 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     string[] atributes = text.Split(';');
 
                     Owner owner = new Owner(int.Parse(atributes[0]), atributes[1], atributes[2], long.Parse(atributes[3]));
-                    //Console.WriteLine(owner.ToString());
-
                     ownerList.Add(owner);
                 }
             }
+
             return ownerList;
         }
                 
@@ -61,11 +59,10 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     string[] atributes = text.Split(';');
 
                     Animal animal = new Animal(int.Parse(atributes[0]), atributes[1], atributes[2], atributes[3], atributes[4], int.Parse(atributes[5]));
-                    //Console.WriteLine(animal.ToString());
-
                     animalList.Add(animal);
                 }
             }
+
             return animalList;
         }
                 
@@ -93,11 +90,10 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     atributes[2] = atributes[2].Replace('.', ',');
                   
                     Service service = new Service(int.Parse(atributes[0]), atributes[1], float.Parse(atributes[2]), medicines, int.Parse(atributes[4]));
-                    //Console.WriteLine(service.ToString());
-
                     serviceList.Add(service);
                 }
             }
+
             return serviceList;
         }
                 
@@ -117,13 +113,11 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                         string[] atributes = line.Split(';');
 
                         ScheduleSlot scheduleSlot = new ScheduleSlot(int.Parse(atributes[0]), int.Parse(atributes[1]), int.Parse(atributes[2]), atributes[3], int.Parse(atributes[4]), int.Parse(atributes[5]));
-
                         scheduleSlotList.Add(scheduleSlot);
-
-                        //Console.WriteLine(scheduleSlot.ToString());
-                    }               
+                    }
                 }
             }
+
             return scheduleSlotList;
         }
         public List<ScheduleSlot> GetSortedOwnerAppointments(List<int> ownerAnimalIds)
@@ -140,12 +134,12 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     if (ownerAnimalIds.Contains(int.Parse(atributes[1])))
                     {
                         ScheduleSlot scheduleSlot = new ScheduleSlot(int.Parse(atributes[0]), int.Parse(atributes[1]), int.Parse(atributes[2]), atributes[3], int.Parse(atributes[4]), int.Parse(atributes[5]));
-
                         scheduleSlotList.Add(scheduleSlot);
                     }
                 }
             }
             scheduleSlotList.Sort(ScheduleSlot.CompareSlots);
+
             return scheduleSlotList;
         }
     }

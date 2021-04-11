@@ -49,13 +49,10 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         public override String ToString()
         {
             string text = "Serviço: " + this.Name + "\n" + "Preço: " + this.Price + "\n" + "Duração: " + this.Duration + "\n" + "Medicamentos: \n";
-
             int medicineLength = this.Medicine.Count;
 
-            for (int i = 0; i < medicineLength; i++)
-            {
-                text += "   " + this.Medicine[i] + "\n";
-            }
+            for (int i = 0; i < medicineLength; i++){ text += "   " + this.Medicine[i] + "\n"; }
+
             return text;
         }
     }

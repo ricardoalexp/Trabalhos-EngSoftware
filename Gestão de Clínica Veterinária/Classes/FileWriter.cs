@@ -18,9 +18,9 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         {
             int id;
             string relativePath = filePath + @"Resources\Clients\";
-
             string fileName;
             int i = 1;
+
             try
             {
                 fileName = relativePath + i + "_owner.txt";
@@ -29,15 +29,15 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     i++;
                     fileName = relativePath + i + "_owner.txt";
                 }
+
                 id = i;
                 string line = Convert.ToString(id) + ";"
                 + owner.Name + ";" + owner.Address + ";"
-                + owner.Contact + ";\n";                
-
+                + owner.Contact + ";\n";
                 File.WriteAllText(fileName, line);
                 Console.WriteLine(line);
-
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
                 id = 0;
@@ -50,9 +50,9 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         {
             int id;
             string relativePath = filePath + @"Resources\Animals\";
-
             string fileName;
             int i = 1;
+
             try
             {
                 fileName = relativePath + i + "_animal.txt";
@@ -69,12 +69,9 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     + animal.Subcategory + ";"
                     + animal.OwnerId + ";\n";
 
-                using (StreamWriter sw = File.AppendText(fileName))
-                {
-                    sw.WriteLine(line);
-                }
-                Console.WriteLine(line);
+                using (StreamWriter sw = File.AppendText(fileName)) {sw.WriteLine(line); }
 
+                Console.WriteLine(line);
             }
             catch (Exception e)
             {
@@ -89,9 +86,9 @@ namespace Gestão_de_Clínica_Veterinária.Classes
         {
             int id;
             string relativePath = filePath + @"Resources\Veterinaries\";
-
             string fileName;
             int i = 1;
+
             try
             {
                 fileName = relativePath + i + "_veterinary.txt";
@@ -113,6 +110,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                 Console.WriteLine(e.ToString());
                 id = 0;
             }
+
             return id;
         }
                 
@@ -122,6 +120,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             string relativePath = filePath + @"Resources\Services\";
             string fileName;
             int i = 1;
+
             try
             {
                 fileName = relativePath + i + "_service.txt";
@@ -130,8 +129,8 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                     i++;
                     fileName = relativePath + i + "_service.txt";
                 }
-                id = i;
 
+                id = i;
                 string line = Convert.ToString(id) + ";"
                 + service.Name + ";"
                 + service.Price + ";";
@@ -162,6 +161,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes
             string fileName;
             string text = "";
             bool success;
+
             try
             {
                 fileName = relativePath + slot.Dia + ".txt";
@@ -172,10 +172,8 @@ namespace Gestão_de_Clínica_Veterinária.Classes
                 + slot.Dia + ";"
                 + slot.HoraInicio + ";"
                 + slot.HoraFim + ";";
-                using (StreamWriter sw = File.AppendText(fileName))
-                {
-                    sw.WriteLine(text);
-                }
+
+                using (StreamWriter sw = File.AppendText(fileName)) { sw.WriteLine(text); }
                 Console.WriteLine(text);
                 success = true;
             }

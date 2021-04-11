@@ -1,1 +1,1 @@
-1;blabla;600;Vacina:SDsds:dsdsd:;30;
+1;Castração;150;Vacina:Adapaleno:Apalutamida:;30;
