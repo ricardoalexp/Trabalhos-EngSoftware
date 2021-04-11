@@ -10,7 +10,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes.Tests
     public class CustomDateTimeTests
     {
         [TestMethod()]
-        public void AppointmentDateValidateTest() //DONE
+        public void AppointmentDateValidateTest()
         {
             string validTestDate = "12 05 2021";
             string notValidTestDate = "12 05 2019";
@@ -23,7 +23,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes.Tests
         }
 
         [TestMethod()]
-        public void CheckDateTimeFormatTest() //DONE
+        public void CheckDateTimeFormatTest()
         {
             string validTestDate = "2013 05 30";
             string notvalidTestDate = "1500 08 32";
@@ -36,7 +36,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes.Tests
         }
 
         [TestMethod()]
-        public void CurrentDateTest() //DONE
+        public void CurrentDateTest()
         {
             string validTestDate = DateTime.UtcNow.ToString("dd-MM-yyyy");
             string result = CustomDateTime.CurrentDate();
@@ -45,7 +45,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes.Tests
         }
 
         [TestMethod()]
-        public void FormatDateTest() //DONE
+        public void FormatDateTest()
         {
             var validTestDate = "12 07 2021";
             var resultValid = CustomDateTime.FormatDate(validTestDate);
@@ -64,7 +64,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes.Tests
         }
 
         [TestMethod()]
-        public void MinutesDurationFormatTest() //DONE
+        public void MinutesDurationFormatTest()
         {
             var valid = 90;
             var resultValid = CustomDateTime.MinutesDurationFormat(valid);
@@ -78,7 +78,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes.Tests
         }
 
         [TestMethod()]
-        public void GetAppointmentEndTimeTest() //DONE
+        public void GetAppointmentEndTimeTest()
         {
             var validInicio = "14:00"; var validDuracao =  90;
             var expectedValid = "15:30";
@@ -93,7 +93,7 @@ namespace Gestão_de_Clínica_Veterinária.Classes.Tests
         }
 
         [TestMethod()]
-        public void StringTimeFormatTest() //DONE
+        public void StringTimeFormatTest()
         {
             int[] validTimes = { 2359, 0359, 0059, 0009, 0000 };
             string[] expectedvalidTimes = { "23:59", "03:59", "00:59", "00:09", "00:00" };
